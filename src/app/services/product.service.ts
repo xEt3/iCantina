@@ -15,16 +15,11 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-    // Get posts  on pages from 10 post
-    getProductAvailables(reset: boolean = false) {
+  getProductAvailables(reset: boolean = false) {
       if (reset) {
         this.pageProductAvailables = 0;
       }
       this.pageProductAvailables++;
       return this.http.get<ProductAvailablesResponse>(`${url}/product/availables?page=${this.pageProductAvailables}`);
     }
-  
-
-
-
 }
