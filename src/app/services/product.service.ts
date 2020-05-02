@@ -1,0 +1,30 @@
+import { Injectable } from '@angular/core';
+import { environment } from '../../environments/environment.prod';
+import { HttpClient } from '@angular/common/http';
+import { ProductAvailablesResponse } from '../interfaces/ProductInterfaces';
+
+const url = environment.url;
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ProductService {
+
+  private pageProductAvailables=0;
+
+  constructor(private http: HttpClient) { }
+
+    // Get posts  on pages from 10 post
+    getProductAvailables(reset: boolean = false) {
+      if (reset) {
+        this.pageProductAvailables = 0;
+      }
+      this.pageProductAvailables++;
+      return this.http.get<ProductAvailablesResponse>(`${url}/product/availables?page=${this.pageProductAvailables}`);
+    }
+  
+
+
+
+}
