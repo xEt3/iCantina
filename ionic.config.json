@@ -1,0 +1,7 @@
+{
+  "name": "iCantina",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
