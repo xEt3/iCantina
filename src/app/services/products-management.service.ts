@@ -146,11 +146,4 @@ export class ProductsManagementService {
     })
   }
 
-
-
-
-
-
-
-
 }
