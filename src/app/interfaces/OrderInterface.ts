@@ -19,6 +19,7 @@ export interface Order {
 
 export interface ProductElement {
     _id?:     string;
+    unitPrice?:number;
     product: string;
     amount:  number;
 }
