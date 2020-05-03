@@ -11,18 +11,20 @@ const url = environment.url;
   providedIn: 'root'
 })
 
-
 export class UserService {
 
   private token = null;
   private user: User = {};
+  isLoged=false;
 
 
   constructor(
     private http:HttpClient,
     private storage:Storage,
     private navController: NavController
-    ) { }
+    ) {
+      this.loadToken();
+     }
 
   register(user: User) {
     return new Promise(resolve => {
@@ -52,11 +54,13 @@ export class UserService {
 
   async loadToken() {
     this.token = await this.storage.get('token') || null;
+    if(this.token){
+      await this.verifyToken();
+    }
   }
 
 
   async verifyToken(): Promise<boolean> {
-    await this.loadToken();
     if (!this.token) {
       // this.navController.navigateRoot('/login');
       return Promise.resolve(false);
@@ -68,6 +72,7 @@ export class UserService {
       this.http.get<MeResponse>(`${url}/user/me`, { headers }).subscribe(resp => {
         if (resp.ok) {
           this.user = resp.user;
+          this.isLoged=true;
           resolve(true);
         } else {
           // this.navController.navigateRoot('/login');

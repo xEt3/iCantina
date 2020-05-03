@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>products</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <app-slideshow-product [products]="products"></app-slideshow-product>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12" *ngFor="let product of products">
+      <app-product-available [product]="product"></app-product-available>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+</ion-content>

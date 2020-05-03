@@ -1,0 +1,17 @@
+[
+  {
+    "icon": "american-football-outline",
+    "name": "home",
+    "redirectTo": "/home"
+  },
+  {
+    "icon": "american-football-outline",
+    "name": "login",
+    "redirectTo": "/login"
+  },
+  {
+    "icon": "fast-food-outline",
+    "name": "Productos",
+    "redirectTo": "/products"
+  }
+]

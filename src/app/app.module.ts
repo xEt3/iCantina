@@ -14,7 +14,7 @@ import { ImagePipe } from './pipes/image.pipe';
 
 
 @NgModule({
-  declarations: [AppComponent, ImagePipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,IonicStorageModule.forRoot()],
   providers: [

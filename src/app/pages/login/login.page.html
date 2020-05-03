@@ -1,0 +1,119 @@
+<ion-content>
+
+
+  <ion-slides class="mainSlide" #slideMain>
+
+    <ion-slide>
+
+      <form (ngSubmit)="login(fLogin)" #fLogin="ngForm">
+        <ion-grid fixed>
+
+          <ion-row>
+            <ion-col>
+              <img src="/assets/avatars/av-1.png">
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+
+              <ion-list>
+
+                <ion-item>
+                  <ion-label position="floating">Mail</ion-label>
+                  <ion-input name="email" type="email" [(ngModel)]="loginUser.email" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input name="password" type="password" [(ngModel)]="loginUser.password" required></ion-input>
+                </ion-item>
+
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" expand="block" color="tertiary" shape="round">
+                Login
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button shape="round"  expand="block" size="small" fill="outline" color="tertiary"
+                (click)="mostrarRegistro()">
+                Registrarme
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+
+        </ion-grid>
+      </form>
+
+
+
+    </ion-slide>
+
+    <ion-slide>
+
+
+      <ion-grid fixed>
+
+
+        <form (ngSubmit)="register(fRegister)" #fRegister="ngForm">
+          <ion-row>
+            <ion-col>
+
+              <ion-list>
+
+                <ion-item>
+                  <ion-label position="floating">Mail</ion-label>
+                  <ion-input name="mail" type="email" [(ngModel)]="registerUser.mail" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Nombre</ion-label>
+                  <ion-input name="nombre" type="text" [(ngModel)]="registerUser.name" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input name="password" type="password" [(ngModel)]="registerUser.password" required></ion-input>
+                </ion-item>
+
+              </ion-list>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" expand="block" color="tertiary" shape="round">
+                Crear usuario
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button shape="round" expand="block" size="small" fill="outline" color="tertiary" (click)="mostarIngresar()">
+                Ingresar
+              </ion-button>
+            </ion-col>
+          </ion-row>
+
+        </form>
+      </ion-grid>
+
+
+    </ion-slide>
+
+
+  </ion-slides>
+
+
+
+</ion-content>
+
+

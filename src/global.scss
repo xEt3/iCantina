@@ -24,3 +24,16 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.card-product-Slide{
+    
+    height: 20% ;
+}
+.blur-image{
+    filter: blur(8px);
+      -webkit-filter: blur(8px);
+}
+.product-mini{
+    width: auto !important;
+    height: auto !important;
+}
