@@ -17,7 +17,7 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent {
   pages: Observable<Page[]>;
-  public selectedPath = "";
+  public selectedPath = "/home";
 
   constructor(
     private platform: Platform,
@@ -30,6 +30,9 @@ export class AppComponent {
     this.initializeApp();
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath = event.url || this.selectedPath;
+      if(this.selectedPath='/'){
+        this.selectedPath="/home"
+      }
       console.log(this.selectedPath);
       
     })
