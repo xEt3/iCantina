@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import { Product } from '../../interfaces/ProductInterfaces';
+import { ProductOrder } from '../../../../model/productOrder';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-products',
@@ -9,14 +11,29 @@ import { Product } from '../../interfaces/ProductInterfaces';
 })
 export class ProductsPage implements OnInit {
 
+  down=false;
   products:Product[]=[];
+  productsOrders:ProductOrder[]=[];
 
-  constructor(private productService:ProductService) { }
+  constructor(
+    private productService:ProductService,
+    public cartService:CartService
+    ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.productService.getProductAvailables().subscribe(data=>{
       this.products=data.products;
     })
+    this.productsOrders=await this.cartService.getAllProductOrders();
+    this.cartService.newProductOrder.subscribe(async data=>{
+      if(data){
+        this.productsOrders=await this.cartService.getAllProductOrders();
+      }
+    })
+  }
+
+  sendOrder(){
+    //TODO
   }
 
 }

@@ -10,7 +10,6 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FileTransfer} from '@ionic-native/file-transfer/ngx';
-import { ImagePipe } from './pipes/image.pipe';
 
 
 @NgModule({

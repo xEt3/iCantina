@@ -4,15 +4,17 @@ import { SlideshowProductComponent } from './slideshow-product/slideshow-product
 import { IonicModule } from '@ionic/angular';
 import { PipesModule } from '../pipes/pipes.module';
 import { ProductAvailableComponent } from './product-available/product-available.component';
+import { SlideshowCartComponent } from './slideshow-cart/slideshow-cart.component';
+import { ProductOrderComponent } from './product-order/product-order.component';
 
 
 
 @NgModule({
-  declarations: [SlideshowProductComponent,ProductAvailableComponent],
+  declarations: [SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent,ProductOrderComponent],
   imports: [
     CommonModule,
     IonicModule,
     PipesModule
-  ],exports:[SlideshowProductComponent,ProductAvailableComponent]
+  ],exports:[SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent]
 })
 export class ComponentsModule { }

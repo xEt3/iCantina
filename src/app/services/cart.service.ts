@@ -1,35 +1,38 @@
-import { Injectable } from '@angular/core';
-import { ProductElement } from '../interfaces/OrderInterface';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { Product } from '../interfaces/ProductInterfaces';
+import { ProductOrder } from '../../../model/productOrder';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private cartProducts: ProductElement[] = [];
-
-  constructor(private storage:Storage) {
+  private cartProducts: ProductOrder[] = [];
+  price:number;
+  constructor(private storage: Storage) {
     this.loadStorage();
   }
 
-  addProduct(productId: string,unitPrice:number, amount: number) {
-    let productOrder = this.getProductElement(productId);
+  newProductOrder = new EventEmitter();
+
+  addProduct(product: Product, amount: number) {
+    let productOrder = this.getProductElement(product._id);
     if (productOrder == undefined) {
-      this.cartProducts.push({ product: productId, amount,unitPrice});
-      this.saveStorage();
+      this.cartProducts.push(new ProductOrder(product, amount));
     } else {
       productOrder.amount += amount;
     }
+    this.saveStorage();
   }
 
-  getProductElement(productId: string): ProductElement {
-    let productElementFound: ProductElement;
-    this.cartProducts.forEach(productElement => {
-      if (productElement.product === productId) {
-        productElementFound = productElement;
+  getProductElement(productId: string): ProductOrder {
+    let productOrderFound: ProductOrder;
+    this.cartProducts.forEach(productOrder => {
+      if (productOrder.product._id === productId) {
+        productOrderFound = productOrder;
       }
     })
-    return productElementFound;
+    return productOrderFound;
   }
 
   removeProductElement(productId: string): boolean {
@@ -56,21 +59,36 @@ export class CartService {
     }
   }
 
+  calculatePrice(){
+    this.price=0
+    this.cartProducts.forEach(productOrder => {
+      this.price+=productOrder.product.price*productOrder.amount;
+    });
+  }
+
   reset() {
     this.cartProducts = [];
     this.saveStorage();
   }
 
-  getAllProductOrders() {
+  async getAllProductOrders() {
+    await this.loadStorage();
     return this.cartProducts;
   }
 
   async saveStorage() {
     await this.storage.set('cartProducts', this.cartProducts);
+    this.calculatePrice();
+    this.newProductOrder.emit('change');
   }
 
   async loadStorage() {
-    this.cartProducts = await this.storage.get('cartProducts') || null;
+    let cartProductStorage: ProductOrder[] = []
+    cartProductStorage = await this.storage.get('cartProducts');
+    if (cartProductStorage) {
+      this.cartProducts = cartProductStorage
+      this.calculatePrice();
+    }
   }
 }
-  
+
