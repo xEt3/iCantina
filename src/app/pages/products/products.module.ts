@@ -8,8 +8,10 @@ import { ProductsPageRoutingModule } from './products-routing.module';
 
 import { ProductsPage } from './products.page';
 import { ComponentsModule } from '../../components/components.module';
+import { SendOrderComponent } from '../../components/send-order/send-order.component';
 
 @NgModule({
+  entryComponents:[SendOrderComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -17,6 +19,6 @@ import { ComponentsModule } from '../../components/components.module';
     ProductsPageRoutingModule,
     ComponentsModule
   ],
-  declarations: [ProductsPage]
+  declarations: [ProductsPage,SendOrderComponent]
 })
 export class ProductsPageModule {}

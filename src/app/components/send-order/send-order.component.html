@@ -1,0 +1,21 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <div *ngFor="let productOrder of productsOrder">
+      <app-item-product-order [productOrder]="productOrder"></app-item-product-order>
+    </div>
+  </ion-list>
+<ion-fab vertical="bottom" horizontal="end" slot="fixed" class="ion-padding">
+  <ion-fab-button (click)="sendOrder()">
+    <ion-icon name="send"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+</ion-content>

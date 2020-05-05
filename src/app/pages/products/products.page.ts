@@ -3,6 +3,8 @@ import { ProductService } from '../../services/product.service';
 import { Product } from '../../interfaces/ProductInterfaces';
 import { ProductOrder } from '../../../../model/productOrder';
 import { CartService } from '../../services/cart.service';
+import { ModalController } from '@ionic/angular';
+import { SendOrderComponent } from '../../components/send-order/send-order.component';
 
 @Component({
   selector: 'app-products',
@@ -17,16 +19,15 @@ export class ProductsPage implements OnInit {
 
   constructor(
     private productService: ProductService,
-    public cartService: CartService
+    public cartService: CartService,
+    private modalController:ModalController
   ) { }
 
   async ngOnInit() {
     this.getProductAvailables();
     this.productsOrders = await this.cartService.getAllProductOrders();
-    this.cartService.newProductOrder.subscribe(async data => {
-      if (data) {
+    this.cartService.cartChange.subscribe(async () => {
         this.productsOrders = await this.cartService.getAllProductOrders();
-      }
     })
   }
 
@@ -42,8 +43,15 @@ export class ProductsPage implements OnInit {
       }
     })
   }
-  sendOrder() {
-    //TODO
+
+  async sendOrder() {
+    const modal = await this.modalController.create({
+      component:SendOrderComponent,
+      componentProps:{
+        productsOrder:this.productsOrders
+      }
+    });
+    modal.present();
   }
 
 }

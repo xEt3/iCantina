@@ -8,15 +8,17 @@ import { SlideshowCartComponent } from './slideshow-cart/slideshow-cart.componen
 import { ProductOrderComponent } from './product-order/product-order.component';
 import { NewProductComponent } from './new-product/new-product.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ItemProductOrderComponent } from './item-product-order/item-product-order.component';
+import { SendOrderComponent } from './send-order/send-order.component';
 
 
 
 @NgModule({
-  declarations: [SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent,ProductOrderComponent,NavbarComponent],
+  declarations: [SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent,ProductOrderComponent,NavbarComponent,ItemProductOrderComponent],
   imports: [
     CommonModule,
     IonicModule,
     PipesModule
-  ],exports:[SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent,NavbarComponent]
+  ],exports:[SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent,NavbarComponent,ItemProductOrderComponent]
 })
 export class ComponentsModule { }

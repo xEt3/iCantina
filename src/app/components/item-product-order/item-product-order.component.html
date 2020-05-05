@@ -1,0 +1,20 @@
+<ion-item-sliding>
+  <ion-item>
+    <ion-avatar class="product-avatar-image">
+      <img [src]="productOrder.product.imgs[0] | image:productOrder.product.user"
+        *ngIf="productOrder.product.imgs.length>0">
+      <img src="assets/sandwitch-default.jpg" *ngIf="productOrder.product.imgs.length===0">
+    </ion-avatar>
+    <ion-text style="padding-left: 10%;">
+      <h5>{{productOrder.product.name}}</h5>
+      <p>Precio Unidad: {{productOrder.product.price| currency:'EUR'}}</p>
+      <p>Cantidad: {{productOrder.amount}}</p>
+      <p>Precio: {{productOrder.product.price*productOrder.amount| currency:'EUR'}}</p>
+    </ion-text>
+  </ion-item>
+  <ion-item-options side="end">
+    <ion-item-option color="danger" (click)="deleteProductToCart(productOrder.product)">
+      <ion-icon slot="icon-only" name="trash"></ion-icon>
+    </ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>

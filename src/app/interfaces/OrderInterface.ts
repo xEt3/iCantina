@@ -12,6 +12,7 @@ export interface Order {
     products:     ProductElement[];
     price?:        number;
     created?:      string;
+    desc?:         string;
     __v?:          number;
     deliverDate?: string;
     employee?:    string;
