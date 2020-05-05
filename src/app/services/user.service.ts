@@ -121,6 +121,14 @@ export class UserService {
     return { ...this.user }
   }
 
+  logout() {
+    this.token = null;
+    this.user = null;
+    this.storage.clear();
+    this.navController.navigateRoot('/login', { animated: true });
+  }
+
+
 
 
 }

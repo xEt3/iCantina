@@ -4,5 +4,11 @@
     <ion-buttons slot="start">
       <ion-menu-button menu="menuId"></ion-menu-button>
     </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="userService.isLoged">
+      <ion-button (click)="logout()">
+        <ion-icon slot="icon-only" name="exit-outline" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
