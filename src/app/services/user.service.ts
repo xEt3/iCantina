@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment.prod';
 import { User, LoginResponse, MeResponse, UpdateUserResponse } from '../interfaces/UserInterfaces';
 import { Storage } from '@ionic/storage';
 import { NavController } from '@ionic/angular';
+import { CartService } from './cart.service';
 
 const url = environment.url;
 
@@ -15,17 +16,18 @@ export class UserService {
 
   private token = null;
   private user: User = {};
-  isLoged=false;
-  isEmployee=false;
+  isLoged = false;
+  isEmployee = false;
 
 
   constructor(
-    private http:HttpClient,
-    private storage:Storage,
-    private navController: NavController
-    ) {
-      this.verifyToken();
-     }
+    private http: HttpClient,
+    private storage: Storage,
+    private navController: NavController,
+    private cartService:CartService
+  ) {
+    this.verifyToken();
+  }
 
   register(user: User) {
     return new Promise(resolve => {
@@ -42,7 +44,7 @@ export class UserService {
     })
   }
 
-  async getToken(){
+  async getToken() {
     await this.verifyToken();
     return this.token;
   }
@@ -71,8 +73,8 @@ export class UserService {
       this.http.get<MeResponse>(`${url}/user/me`, { headers }).subscribe(resp => {
         if (resp.ok) {
           this.user = resp.user;
-          this.isEmployee=this.user.employee
-          this.isLoged=true;
+          this.isEmployee = this.user.employee
+          this.isLoged = true;
           resolve(true);
         } else {
           this.navController.navigateRoot('/login');
@@ -83,6 +85,7 @@ export class UserService {
   }
 
   login(mail: string, password: string) {
+    this.cartService.reset();
     return new Promise(resolve => {
       const userCredentials = { mail, password };
       this.http.post<LoginResponse>(`${url}/user/login`, userCredentials).subscribe(async data => {
