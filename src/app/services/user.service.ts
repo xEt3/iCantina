@@ -61,7 +61,7 @@ export class UserService {
   async verifyToken(): Promise<boolean> {
     await this.loadToken()
     if (!this.token) {
-      // this.navController.navigateRoot('/login');
+      this.navController.navigateRoot('/login');
       return Promise.resolve(false);
     }
     return new Promise<boolean>(resolve => {
@@ -75,7 +75,7 @@ export class UserService {
           this.isLoged=true;
           resolve(true);
         } else {
-          // this.navController.navigateRoot('/login');
+          this.navController.navigateRoot('/login');
           resolve(false)
         }
       })

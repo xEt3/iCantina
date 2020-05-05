@@ -11,21 +11,20 @@
 
   <ion-list>
     <ion-grid fixed>
-      <ion-row *ngIf="tempImages.length===0">
+      <ion-row *ngIf="product.imgs.length===0">
         <ion-col size="12">
          <div class="ion-align-items-center">
           <ion-img src="assets/sandwitch-default.jpg"></ion-img>
          </div>
         </ion-col>
       </ion-row>
-      <ion-row *ngIf="tempImages.length>0">
+      <ion-row *ngIf="product.imgs.length>0">
         <ion-col size="12">
          <div class="ion-align-items-center">
-          <ion-img [src]="tempImages[0].img"></ion-img>
+          <ion-img [src]="product.imgs[0] | image:product.user"></ion-img>
          </div>
         </ion-col>
       </ion-row>
-    
         <ion-row>
           <ion-col>
             <ion-list>
@@ -38,43 +37,19 @@
                 <ion-label position="floating">Precio</ion-label>
                 <ion-input name="nombre" type="number" [(ngModel)]="product.price"></ion-input>
               </ion-item>
+
+              <ion-item>
+                <ion-label>Disponible</ion-label>
+                <ion-toggle [(ngModel)]="product.available"></ion-toggle>
+              </ion-item>
             </ion-list>
           </ion-col>
         </ion-row>
-        <ion-button type="submit" expand="block" color="" shape="round" (click)="createProduct()">
-          <ion-label>Crear producto</ion-label>
+        <ion-button type="submit" expand="block" color="" shape="round" (click)="saveChanges()">
+          <ion-label>Guardar cambios</ion-label>
           <ion-icon slot="end" name="cloud-upload-outline"></ion-icon>
         </ion-button>
-    </ion-grid>
 
+        </ion-grid>
   </ion-list>
-
-  <ion-row>
-    <ion-col size="6">
-      <ion-button expand="full" shape="round" (click)="takePhoto()">
-        <ion-icon slot="start" name="camera"></ion-icon>
-        Cámara
-      </ion-button>
-    </ion-col>
-    <ion-col size="6">
-      <ion-button expand="full" shape="round" (click)="galery()">
-        <ion-icon slot="start" name="images"></ion-icon>
-        Galería
-      </ion-button>
-    </ion-col>
-  </ion-row>
-
-  <ion-row>
-    <ion-col size="6" *ngFor="let image of tempImages">
-      <ion-card>
-        <img [src]="image.img">
-        <ion-button (click)="deleteTempImage(image.nameImgServer)" expand="block" size="large" fill="clear"
-          shape="round">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-button>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-
-
 </ion-content>

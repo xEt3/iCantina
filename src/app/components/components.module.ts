@@ -7,15 +7,16 @@ import { ProductAvailableComponent } from './product-available/product-available
 import { SlideshowCartComponent } from './slideshow-cart/slideshow-cart.component';
 import { ProductOrderComponent } from './product-order/product-order.component';
 import { NewProductComponent } from './new-product/new-product.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 
 @NgModule({
-  declarations: [SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent,ProductOrderComponent],
+  declarations: [SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent,ProductOrderComponent,NavbarComponent],
   imports: [
     CommonModule,
     IonicModule,
     PipesModule
-  ],exports:[SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent]
+  ],exports:[SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent,NavbarComponent]
 })
 export class ComponentsModule { }

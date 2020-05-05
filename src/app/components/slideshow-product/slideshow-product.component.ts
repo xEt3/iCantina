@@ -12,7 +12,6 @@ export class SlideshowProductComponent implements OnInit {
 
   slidesOpt={
     slidesPerView: 2.4,
-    loop:true,
     breakpoints: {
       // when window width is <= 720px
       720: {

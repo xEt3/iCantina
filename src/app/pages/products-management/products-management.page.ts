@@ -3,6 +3,7 @@ import { Product } from '../../interfaces/ProductInterfaces';
 import { ProductsManagementService } from '../../services/products-management.service';
 import { ModalController } from '@ionic/angular';
 import { NewProductComponent } from '../../components/new-product/new-product.component';
+import { EditProductComponent } from '../../components/edit-product/edit-product.component';
 
 @Component({
   selector: 'app-products-management',
@@ -14,7 +15,7 @@ export class ProductsManagementPage implements OnInit {
   products: Product[] = []
 
   constructor(private productsManagementService: ProductsManagementService,
-    private modalController:ModalController
+    private modalController:ModalController,
     ) { }
 
   async ngOnInit() {
@@ -26,6 +27,10 @@ export class ProductsManagementPage implements OnInit {
 
   refresh(ev){
     this.getProducts(ev);
+  }
+
+  async deleteProduct(product:Product){
+    await this.productsManagementService.deleteProduct(product._id)
   }
 
   async getProducts(ev?){
@@ -47,11 +52,19 @@ export class ProductsManagementPage implements OnInit {
   }
 
   async newProduct(){
-    console.log('oe');
-    
     const modal = await this.modalController.create({
       component:NewProductComponent
  
+    });
+    modal.present();
+  }
+
+  async editProduct(product:Product){
+    const modal = await this.modalController.create({
+      component:EditProductComponent,
+      componentProps:{
+        product
+      }
     });
     modal.present();
   }

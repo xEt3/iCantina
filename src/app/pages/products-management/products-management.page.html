@@ -1,35 +1,41 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title class="ion-text-center">Configurar Productos</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="menuId"></ion-menu-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<app-navbar title="Configuracion de Productos"></app-navbar>
 
 <ion-content>
+
   <!-- Refresh -->
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
   <ion-list>
-    <ion-item *ngFor="let product of products">
-      <ion-avatar>
-        <img [src]="product.imgs[0] | image:product.user" *ngIf="product.imgs.length>0">
-        <img src="assets/sandwitch-default.jpg" *ngIf="product.imgs.length===0">
-      </ion-avatar>
-      <ion-text class="ion-padding">
-        <h5>{{product.name}}</h5>
-        <p>Precio: {{product.price| currency:'EUR'}}</p>
-      </ion-text>
-      <ion-buttons slot="end">
-        <ion-toggle (ionChange)="changeStatusProduct(product)" [(ngModel)]="product.available"></ion-toggle>
-        <ion-button (click)="onClick()">
-          <ion-icon slot="icon-only" name="settings"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
+
+    <ion-item-sliding *ngFor="let product of products">
+      <ion-item >
+        <ion-avatar>
+          <img [src]="product.imgs[0] | image:product.user" *ngIf="product.imgs.length>0">
+          <img src="assets/sandwitch-default.jpg" *ngIf="product.imgs.length===0">
+        </ion-avatar>
+        <ion-text class="ion-padding">
+          <h5>{{product.name}}</h5>
+          <p>Precio: {{product.price| currency:'EUR'}}</p>
+        </ion-text>
+        <ion-buttons slot="end">
+          <ion-toggle (ionChange)="changeStatusProduct(product)" [(ngModel)]="product.available"></ion-toggle>
+          <ion-button (click)="editProduct(product)">
+            <ion-icon slot="icon-only" name="settings"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+  
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="deleteProduct(product)">
+          <ion-icon slot="icon-only"  name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+
+    </ion-item-sliding>
+
+
   </ion-list>
 
 <ion-fab vertical="bottom" horizontal="center" slot="fixed">
