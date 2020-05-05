@@ -18,10 +18,24 @@ export class ProductsManagementPage implements OnInit {
     ) { }
 
   async ngOnInit() {
-    const query = await this.productsManagementService.getProducts()
+    await this.getProducts();
+    this.productsManagementService.changeProduct.subscribe(data=>{
+      this.getProducts();
+    })
+  }
+
+  refresh(ev){
+    this.getProducts(ev);
+  }
+
+  async getProducts(ev?){
+    const query = await this.productsManagementService.getProducts(true);
     query.subscribe(data => {
       this.products = data.products;
-    })
+      if(ev){
+        ev.target.complete();
+      }
+    });
   }
 
   async changeStatusProduct(product: Product) {

@@ -11,28 +11,38 @@ import { CartService } from '../../services/cart.service';
 })
 export class ProductsPage implements OnInit {
 
-  down=false;
-  products:Product[]=[];
-  productsOrders:ProductOrder[]=[];
+  down = false;
+  products: Product[] = [];
+  productsOrders: ProductOrder[] = [];
 
   constructor(
-    private productService:ProductService,
-    public cartService:CartService
-    ) { }
+    private productService: ProductService,
+    public cartService: CartService
+  ) { }
 
   async ngOnInit() {
-    this.productService.getProductAvailables(true).subscribe(data=>{
-      this.products=data.products;
-    })
-    this.productsOrders=await this.cartService.getAllProductOrders();
-    this.cartService.newProductOrder.subscribe(async data=>{
-      if(data){
-        this.productsOrders=await this.cartService.getAllProductOrders();
+    this.getProductAvailables();
+    this.productsOrders = await this.cartService.getAllProductOrders();
+    this.cartService.newProductOrder.subscribe(async data => {
+      if (data) {
+        this.productsOrders = await this.cartService.getAllProductOrders();
       }
     })
   }
 
-  sendOrder(){
+  refresh(ev) {
+    this.getProductAvailables(ev);
+  }
+
+  getProductAvailables(ev?) {
+    this.productService.getProductAvailables(true).subscribe(data => {
+      this.products = data.products;
+      if(ev){
+        ev.target.complete();
+      }
+    })
+  }
+  sendOrder() {
     //TODO
   }
 

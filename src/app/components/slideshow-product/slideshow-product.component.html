@@ -1,16 +1,5 @@
 <ion-slides [options]="slidesOpt" direction="vertical">
   <ion-slide *ngFor="let product of products">
-    <ion-card mode='md'  >
-      <ion-img ></ion-img>
-      <img [src]="product.imgs[0] | image" *ngIf="product.imgs.length>0" class="product-mini">
-      <img class="blur-image"  src="assets/sandwitch-default.jpg" *ngIf="product.imgs.length===0" >
-      <ion-card-title style="position:absolute;top: 50%;left: 50%;transform: translate(-50%, -50%);">
-        {{product.name}}
-      </ion-card-title>
-      <ion-card-subtitle style="position:absolute;top: 90%;left: 90%;transform: translate(-90%, -90%);">
-        {{product.price}}€
-      </ion-card-subtitle>
-    </ion-card>
-    
+    <app-product-available [product]="product"></app-product-available>
   </ion-slide>
 </ion-slides>

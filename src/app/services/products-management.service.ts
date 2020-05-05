@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserService } from './user.service';
@@ -14,11 +14,14 @@ export class ProductsManagementService {
 
   private pageProducts = 0;
 
+  changeProduct = new EventEmitter();
+
   constructor(
     private http: HttpClient,
     private userService: UserService,
     private fileTransefer: FileTransfer) { }
 
+    
   async getProducts(reset: boolean = false) {
     const token = await this.userService.getToken();
     const headers = new HttpHeaders({
@@ -39,6 +42,7 @@ export class ProductsManagementService {
       })
       this.http.post<productResponse>(`${url}/product`, product, { headers }).subscribe(data => {
         if (data.ok) {
+          this.changeProduct.emit();
           return resolve(data.product);
         } else {
           return resolve(false);
@@ -55,6 +59,7 @@ export class ProductsManagementService {
       })
       this.http.delete(`${url}/product/remove/${idProduct}`, { headers }).subscribe(data => {
         if (data['ok']) {
+          this.changeProduct.emit()
           return resolve(true);
         } else {
           return resolve(false);
@@ -139,6 +144,7 @@ export class ProductsManagementService {
       })
       this.http.delete<productResponse>(`${url}/product/image/product/${idProduct}/${imageName}`, { headers }).subscribe((data) => {
         if (data.ok) {
+          this.changeProduct.emit();
           resolve(data.product);
         } else {
           resolve(false);

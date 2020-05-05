@@ -3,8 +3,11 @@ import { ModalController, IonicModule } from '@ionic/angular';
 import { tempImage } from '../../interfaces/interfaces';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ProductsManagementService } from '../../services/products-management.service';
+import { Product } from '../../interfaces/ProductInterfaces';
+import { UIService } from '../../services/ui.service';
+import { identifierModuleUrl } from '@angular/compiler';
 
-declare var window:any;
+declare var window: any;
 
 @Component({
   selector: 'app-new-product',
@@ -12,15 +15,22 @@ declare var window:any;
   styleUrls: ['./new-product.component.scss'],
 })
 export class NewProductComponent implements OnInit {
-  
+
   tempImages: tempImage[] = []
+  product:Product={
+    name:"",
+    price:0
+  }
 
-  constructor(private modalController:ModalController,
-    private camera:Camera,
-    private productsManagementService:ProductsManagementService
-    ) { }
+  constructor(private modalController: ModalController,
+    private camera: Camera,
+    private productsManagementService: ProductsManagementService,
+    private ui:UIService
+  ) { }
 
-  ngOnInit() {}
+  async ngOnInit() {
+    await this.productsManagementService.deleteTempFolder()
+  }
 
   dismiss() {
     this.modalController.dismiss({
@@ -28,50 +38,75 @@ export class NewProductComponent implements OnInit {
     });
   }
 
-  takePhoto(){
+  takePhoto() {
     const options: CameraOptions = {
       quality: 60,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation:true,
+      correctOrientation: true,
       sourceType: this.camera.PictureSourceType.CAMERA
-    }
-    this.procesarImagen(options);
+    };
+
+    this.processImage(options);
   }
 
-  galery(){
+  galery() {
     const options: CameraOptions = {
       quality: 60,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
-      correctOrientation:true,
+      correctOrientation: true,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
     }
-    this.procesarImagen(options);
+    this.processImage(options);
   }
 
-  procesarImagen(options:CameraOptions){
+  processImage(options: CameraOptions) {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
- 
-      const img =  window.Ionic.WebView.convertFileSrc(imageData);
-      this.productsManagementService.uploadImage(imageData).then((data:any)=>{
-       
-        if(data.nombreImagen){
-          this.tempImages.push({img,nameImgServer:data.nombreImagen})
+
+      const img = window.Ionic.WebView.convertFileSrc(imageData);
+
+      this.productsManagementService.uploadImage(imageData).then((data: any) => {
+        //revisar backend nombreImagen
+        console.log(data);
+
+        if (data.ImageName) {
+          this.tempImages.push({ img, nameImgServer: data.ImageName })
         }
       });
- 
-     //  let base64Image = 'data:image/jpeg;base64,' + imageData;
- 
-      console.log(this.tempImages)
-     }, (err) => {
+
+    }, (err) => {
       // Handle error
-     });
+    });
+    //  let base64Image = 'data:image/jpeg;base64,' + imageData;
   }
 
+  createProduct() {
+    if(this.product.name.trim().length<=0){
+      this.ui.presentToast('nombre invalido'+this.product.name);
+      return
+    }
+    if (this.product.price<=0) {
+      this.ui.presentToast('precio invalido');
+    }
+    this.productsManagementService.newProduct(this.product).then(data=>{
+      if(data){
+        this.ui.presentToast('Producto '+this.product.name+" creado");
+        console.log(data)
+        this.modalController.dismiss();
+      }
+    })
+  }
+
+  async deleteTempImage(imageName:string) {
+    let isDeleted = await this.productsManagementService.deleteTempFile(imageName);
+    if (isDeleted) {
+      this.tempImages = this.tempImages.filter(tmpimg => tmpimg.nameImgServer != imageName);
+    }
+  }
 
 }

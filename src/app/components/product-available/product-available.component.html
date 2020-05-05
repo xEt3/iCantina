@@ -1,6 +1,6 @@
 <ion-card mode='md'>
   <ion-card-header>
-    <img [src]="product.imgs[0] | image" *ngIf="product.imgs.length>0" >
+    <img [src]="product.imgs[0] | image:product.user " *ngIf="product.imgs.length>0" >
     <img src="assets/sandwitch-default.jpg" *ngIf="product.imgs.length===0">
     <ion-card-title>{{product.name}}</ion-card-title>
     <ion-card-subtitle>{{product.price | currency:'EUR'}}</ion-card-subtitle>
