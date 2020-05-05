@@ -3,4 +3,7 @@ export interface Page{
     name:string;
     redirectTo:string;
 }
-  
+export interface tempImage{
+    img:string,
+    nameImgServer:string
+}

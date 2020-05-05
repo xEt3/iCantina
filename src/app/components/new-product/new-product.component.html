@@ -1,3 +1,74 @@
-<p>
-  new-product works!
-</p>
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="exit-outline" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+
+  <ion-list>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12">
+         <div class="ion-align-items-center">
+          <ion-img src="assets/sandwitch-default.jpg"></ion-img>
+         </div>
+
+        </ion-col>
+      </ion-row>
+    
+        <ion-row>
+          <ion-col>
+            <ion-list>
+              <ion-item>
+                <ion-label position="floating">Nombre</ion-label>
+                <ion-input name="mail" type="text"></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="floating">Precio</ion-label>
+                <ion-input name="nombre" type="number"></ion-input>
+              </ion-item>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+        <ion-button type="submit" expand="block" color="" shape="round">
+          <ion-label>Crear producto</ion-label>
+          <ion-icon slot="end" name="cloud-upload-outline"></ion-icon>
+        </ion-button>
+    </ion-grid>
+
+  </ion-list>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="full" shape="round" (click)="camara()">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Cámara
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="full" shape="round" (click)="galeria()">
+        <ion-icon slot="start" name="images"></ion-icon>
+        Galería
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="6" *ngFor="let image of tempImages">
+      <ion-card>
+        <img [src]="image.img">
+        <ion-button (click)="deleteTempImage(image.nombreImgServer)" expand="block" size="large" fill="clear"
+          shape="round">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>
