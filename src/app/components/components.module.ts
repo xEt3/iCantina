@@ -6,6 +6,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { ProductAvailableComponent } from './product-available/product-available.component';
 import { SlideshowCartComponent } from './slideshow-cart/slideshow-cart.component';
 import { ProductOrderComponent } from './product-order/product-order.component';
+import { NewProductComponent } from './new-product/new-product.component';
 
 
 

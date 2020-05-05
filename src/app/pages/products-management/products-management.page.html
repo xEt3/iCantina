@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">Configurar Productos</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menuId"></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item *ngFor="let product of products">
+      <ion-avatar>
+        <img [src]="product.imgs[0] | image" *ngIf="product.imgs.length>0">
+        <img src="assets/sandwitch-default.jpg" *ngIf="product.imgs.length===0">
+      </ion-avatar>
+      <ion-text class="ion-padding">
+        <h5>{{product.name}}</h5>
+        <p>Precio: {{product.price| currency:'EUR'}}</p>
+      </ion-text>
+      <ion-buttons slot="end">
+        <ion-toggle (ionChange)="changeStatusProduct(product)" [(ngModel)]="product.available"></ion-toggle>
+        <ion-button (click)="onClick()">
+          <ion-icon slot="icon-only" name="settings"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+<ion-fab vertical="bottom" horizontal="center" slot="fixed">
+  <ion-fab-button (click)="newProduct()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+</ion-content>

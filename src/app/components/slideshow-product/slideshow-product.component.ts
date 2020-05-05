@@ -20,7 +20,7 @@ export class SlideshowProductComponent implements OnInit {
       },
       // when window width is <= 999px
       999: {
-          slidesPerView: 6.2
+          slidesPerView: 4.6
           
       }},
     freeMode: true

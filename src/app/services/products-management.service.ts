@@ -114,7 +114,8 @@ export class ProductsManagementService {
     })
   }
 
-  updateProduct(product:Product,idProduct:String) {
+  updateProduct(product:Product) {
+    const idProduct=product._id;
     return new Promise(async resolve => {
       const token = await this.userService.getToken();
       const headers = new HttpHeaders({

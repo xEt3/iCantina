@@ -21,7 +21,7 @@ export class ProductsPage implements OnInit {
     ) { }
 
   async ngOnInit() {
-    this.productService.getProductAvailables().subscribe(data=>{
+    this.productService.getProductAvailables(true).subscribe(data=>{
       this.products=data.products;
     })
     this.productsOrders=await this.cartService.getAllProductOrders();

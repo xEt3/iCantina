@@ -17,11 +17,11 @@ export class SlideshowCartComponent implements OnInit {
     breakpoints: {
       // when window width is <= 720px
       720: {
-          slidesPerView: 4.2
+          slidesPerView: 3.2
       },
       // when window width is <= 999px
       999: {
-          slidesPerView: 6.2
+          slidesPerView: 5.2
           
       }},
     freeMode: true

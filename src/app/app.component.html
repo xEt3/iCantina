@@ -10,24 +10,29 @@
       </ion-header>
       <ion-content>
         <ion-list>
-          <ion-menu-toggle autoHide=false >
+          <ion-menu-toggle autoHide=false>
 
-            <ion-item  *ngFor=" let page of pages | async" [routerLink]="page.redirectTo" routerDirecction="root" [class.active-item]="selectedPath===page.redirectTo">
+            <ion-item *ngFor=" let page of pages | async" [routerLink]="page.redirectTo" routerDirecction="root"
+              [class.active-item]="selectedPath===page.redirectTo">
               <ion-icon slot="start" [name]="page.icon"></ion-icon>
               <ion-label>{{page.name}}</ion-label>
             </ion-item>
 
-            <ion-item routerLink="/login" routerDirecction="root" [class.active-item]="selectedPath==='/login'" *ngIf="!userService.isLoged">
+            <ion-item routerLink="/login" routerDirecction="root" [class.active-item]="selectedPath==='/login'"
+              *ngIf="!userService.isLoged">
               <ion-icon slot="start" name="user"></ion-icon>
               <ion-label>logiiin</ion-label>
             </ion-item>
-
-
+            <ion-item routerLink="/products-management" routerDirecction="root"
+              [class.active-item]="selectedPath==='/products-management'" *ngIf="userService.isEmployee">
+              <ion-icon slot="start" name="construct-outline"></ion-icon>
+              <ion-label>Configurar Productos</ion-label>
+            </ion-item>
           </ion-menu-toggle>
 
         </ion-list>
       </ion-content>
-    </ion-menu> 
+    </ion-menu>
 
     <ion-router-outlet id="principal"></ion-router-outlet>
 

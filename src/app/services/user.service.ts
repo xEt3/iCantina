@@ -16,6 +16,7 @@ export class UserService {
   private token = null;
   private user: User = {};
   isLoged=false;
+  isEmployee=false;
 
 
   constructor(
@@ -23,7 +24,7 @@ export class UserService {
     private storage:Storage,
     private navController: NavController
     ) {
-      this.loadToken();
+      this.verifyToken();
      }
 
   register(user: User) {
@@ -54,13 +55,11 @@ export class UserService {
 
   async loadToken() {
     this.token = await this.storage.get('token') || null;
-    if(this.token){
-      await this.verifyToken();
-    }
   }
 
 
   async verifyToken(): Promise<boolean> {
+    await this.loadToken()
     if (!this.token) {
       // this.navController.navigateRoot('/login');
       return Promise.resolve(false);
@@ -72,6 +71,7 @@ export class UserService {
       this.http.get<MeResponse>(`${url}/user/me`, { headers }).subscribe(resp => {
         if (resp.ok) {
           this.user = resp.user;
+          this.isEmployee=this.user.employee
           this.isLoged=true;
           resolve(true);
         } else {

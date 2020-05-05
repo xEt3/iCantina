@@ -30,7 +30,7 @@ export class AppComponent {
     this.initializeApp();
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath = event.url || this.selectedPath;
-      if(this.selectedPath='/'){
+      if(this.selectedPath==='/'){
         this.selectedPath="/home"
       }
       console.log(this.selectedPath);
