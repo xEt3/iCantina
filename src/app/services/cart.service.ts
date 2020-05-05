@@ -13,7 +13,7 @@ export class CartService {
     this.loadStorage();
   }
 
-  newProductOrder = new EventEmitter();
+  cartChange = new EventEmitter();
 
   addProduct(product: Product, amount: number) {
     let productOrder = this.getProductElement(product._id);
@@ -40,6 +40,7 @@ export class CartService {
     if (productElement != undefined) {
       let index = this.cartProducts.indexOf(productElement);
       this.cartProducts.splice(index, 1);
+      this.cartChange.emit();
       this.saveStorage();
       return true;
     } else {
@@ -79,7 +80,7 @@ export class CartService {
   async saveStorage() {
     await this.storage.set('cartProducts', this.cartProducts);
     this.calculatePrice();
-    this.newProductOrder.emit('change');
+    this.cartChange.emit('change');
   }
 
   async loadStorage() {
