@@ -3,36 +3,29 @@
 
   <ion-slides class="mainSlide" #slideMain>
 
+    <!-- LOGIN -->
     <ion-slide>
-
       <form (ngSubmit)="login(fLogin)" #fLogin="ngForm">
-        <ion-grid fixed>
-
+        <ion-grid>
           <ion-row>
             <ion-col>
               <img src="/assets/avatars/av-1.png">
             </ion-col>
           </ion-row>
-
           <ion-row>
             <ion-col>
-
               <ion-list>
-
                 <ion-item>
-                  <ion-label position="floating">Mail</ion-label>
+                  <ion-label position="floating">Correo</ion-label>
                   <ion-input name="email" type="email" [(ngModel)]="loginUser.email" required></ion-input>
                 </ion-item>
-
                 <ion-item>
-                  <ion-label position="floating">Password</ion-label>
+                  <ion-label position="floating">Contraseña</ion-label>
                   <ion-input name="password" type="password" [(ngModel)]="loginUser.password" required></ion-input>
                 </ion-item>
-
               </ion-list>
             </ion-col>
           </ion-row>
-
           <ion-row>
             <ion-col>
               <ion-button type="submit" expand="block" color="tertiary" shape="round">
@@ -42,52 +35,39 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-button shape="round"  expand="block" size="small" fill="outline" color="tertiary"
+              <ion-button shape="round" expand="block" size="small" fill="outline" color="tertiary"
                 (click)="mostrarRegistro()">
                 Registrarme
               </ion-button>
             </ion-col>
           </ion-row>
-
-
         </ion-grid>
       </form>
-
-
-
     </ion-slide>
 
+    <!-- REGISTER -->
+
     <ion-slide>
-
-
-      <ion-grid fixed>
-
-
-        <form (ngSubmit)="register(fRegister)" #fRegister="ngForm">
+      <form (ngSubmit)="register(fRegister)" #fRegister="ngForm">
+        <ion-grid>
           <ion-row>
             <ion-col>
-
               <ion-list>
-
                 <ion-item>
-                  <ion-label position="floating">Mail</ion-label>
+                  <ion-label position="floating">Correo</ion-label>
                   <ion-input name="mail" type="email" [(ngModel)]="registerUser.mail" required></ion-input>
                 </ion-item>
-
                 <ion-item>
                   <ion-label position="floating">Nombre</ion-label>
                   <ion-input name="nombre" type="text" [(ngModel)]="registerUser.name" required></ion-input>
                 </ion-item>
-
                 <ion-item>
-                  <ion-label position="floating">Password</ion-label>
+                  <ion-label position="floating">Contraseña</ion-label>
                   <ion-input name="password" type="password" [(ngModel)]="registerUser.password" required></ion-input>
                 </ion-item>
-
               </ion-list>
             </ion-col>
           </ion-row>
-
           <ion-row>
             <ion-col>
               <ion-button type="submit" expand="block" color="tertiary" shape="round">
@@ -97,23 +77,14 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-button shape="round" expand="block" size="small" fill="outline" color="tertiary" (click)="mostarIngresar()">
+              <ion-button shape="round" expand="block" size="small" fill="outline" color="tertiary"
+                (click)="mostarIngresar()">
                 Ingresar
               </ion-button>
             </ion-col>
           </ion-row>
-
-        </form>
-      </ion-grid>
-
-
+        </ion-grid>
+      </form>
     </ion-slide>
-
-
   </ion-slides>
-
-
-
 </ion-content>
-
-
