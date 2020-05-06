@@ -4,7 +4,7 @@ import { ProductOrder } from '../../../../model/productOrder';
 import { CartService } from '../../services/cart.service';
 import { UIService } from '../../services/ui.service';
 import { OrdersService } from '../../services/orders.service';
-import { Order, ProductElement } from '../../interfaces/OrderInterface';
+import { Order, ProductElement, OrderToSend } from '../../interfaces/OrderInterface';
 
 @Component({
   selector: 'app-send-order',
@@ -55,7 +55,7 @@ export class SendOrderComponent implements OnInit {
     }
   }
 
-  private getOrder(): Order {
+  private getOrder(): OrderToSend {
     const productsElment: ProductElement[] = this.getProductsElements();
     return { products: productsElment };
   }

@@ -10,7 +10,7 @@
     "redirectTo": "/login"
   },
   {
-    "icon": "fast-food-outline",
+    "icon": "fast-food",
     "name": "Productos",
     "redirectTo": "/products"
   }

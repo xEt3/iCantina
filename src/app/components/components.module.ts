@@ -10,15 +10,30 @@ import { NewProductComponent } from './new-product/new-product.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ItemProductOrderComponent } from './item-product-order/item-product-order.component';
 import { SendOrderComponent } from './send-order/send-order.component';
+import { ItemOrderComponent } from './item-order/item-order.component';
 
 
 
 @NgModule({
-  declarations: [SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent,ProductOrderComponent,NavbarComponent,ItemProductOrderComponent],
+  declarations: [SlideshowProductComponent
+    ,ProductAvailableComponent
+    ,SlideshowCartComponent
+    ,ProductOrderComponent
+    ,NavbarComponent
+    ,ItemProductOrderComponent
+    ,ItemOrderComponent
+  ],
   imports: [
     CommonModule,
     IonicModule,
     PipesModule
-  ],exports:[SlideshowProductComponent,ProductAvailableComponent,SlideshowCartComponent,NavbarComponent,ItemProductOrderComponent]
+  ],exports:[
+    SlideshowProductComponent,
+    ProductAvailableComponent,
+    SlideshowCartComponent,
+    NavbarComponent,
+    ItemProductOrderComponent,
+    ItemOrderComponent
+  ]
 })
 export class ComponentsModule { }

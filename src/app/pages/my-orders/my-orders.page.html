@@ -1,0 +1,32 @@
+<app-navbar title="Mis pedidos"></app-navbar>
+<ion-content>
+  <ion-segment (ionChange)="isFinished=!isFinished" value="finished">
+    <ion-segment-button value="finished">
+      <ion-label>Entregados</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="unfinished">
+      <ion-label>Pendientes</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <!-- Refresh -->
+  <ion-refresher slot="fixed" (ionRefresh)="nexts($event,true)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="isFinished">
+    <app-item-order *ngFor="let order of ordersFinished" [order]="order" class="ion-padding">
+    </app-item-order>
+  </div>
+
+  <div *ngIf="!isFinished">
+    <app-item-order *ngFor="let order of ordersUnfinished" [order]="order" class="ion-padding">
+    </app-item-order>
+
+  </div>
+  <ion-infinite-scroll [disabled]="!infineScrollEnable" threshold="25%" position="bottom" (ionInfinite)="nexts($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando productos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
