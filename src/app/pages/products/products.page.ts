@@ -16,6 +16,7 @@ export class ProductsPage implements OnInit {
   down = false;
   products: Product[] = [];
   productsOrders: ProductOrder[] = [];
+  infineScrollEnable=true;
 
   constructor(
     private productService: ProductService,
@@ -24,7 +25,7 @@ export class ProductsPage implements OnInit {
   ) { }
 
   async ngOnInit() {
-    this.getProductAvailables();
+    this.nexts(null,true);
     this.productsOrders = await this.cartService.getAllProductOrders();
     this.cartService.cartChange.subscribe(async () => {
         this.productsOrders = await this.cartService.getAllProductOrders();
@@ -32,15 +33,25 @@ export class ProductsPage implements OnInit {
   }
 
   refresh(ev) {
-    this.getProductAvailables(ev);
+    this.nexts(ev);
+    this.infineScrollEnable=true;
   }
 
-  getProductAvailables(ev?) {
-    this.productService.getProductAvailables(true).subscribe(data => {
-      this.products = data.products;
+
+
+  nexts(ev?,reset:boolean=false){
+    if(reset){
+      this.products=[];
+    }
+    this.productService.getProductAvailables(reset).subscribe(data => {
+      this.products.push(...data.products);
+      if(data.products.length===0){
+        this.infineScrollEnable=false;
+      }
       if(ev){
         ev.target.complete();
       }
+      
     })
   }
 

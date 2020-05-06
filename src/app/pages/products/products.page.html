@@ -14,7 +14,14 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <!-- InfiniteScroll -->
+  <ion-infinite-scroll [disabled]="!infineScrollEnable" threshold="25%" position="bottom" (ionInfinite)="nexts($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando productos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
+
+
 
 <!-- cart -->
 <ion-footer *ngIf="productsOrders.length>0" >

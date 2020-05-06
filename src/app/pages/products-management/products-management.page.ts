@@ -13,30 +13,38 @@ import { EditProductComponent } from '../../components/edit-product/edit-product
 export class ProductsManagementPage implements OnInit {
 
   products: Product[] = []
+  infineScrollEnable=true;
 
   constructor(private productsManagementService: ProductsManagementService,
     private modalController:ModalController,
     ) { }
 
   async ngOnInit() {
-    await this.getProducts();
+    await this.nexts(null,true);
     this.productsManagementService.changeProduct.subscribe(data=>{
-      this.getProducts();
+      this.nexts(null,true);
     })
   }
 
   refresh(ev){
-    this.getProducts(ev);
+    this.nexts(ev,true);
   }
 
   async deleteProduct(product:Product){
     await this.productsManagementService.deleteProduct(product._id)
   }
 
-  async getProducts(ev?){
-    const query = await this.productsManagementService.getProducts(true);
+  async nexts(ev?,reset:boolean=false){
+    if(reset){
+      this.products=[];
+      this.infineScrollEnable=true;
+    }
+    const query = await this.productsManagementService.getProducts(reset);
     query.subscribe(data => {
-      this.products = data.products;
+      this.products.push(...data.products);
+      if(data.products.length===0){
+        this.infineScrollEnable=false;
+      }
       if(ev){
         ev.target.complete();
       }
