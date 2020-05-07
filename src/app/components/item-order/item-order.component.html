@@ -1,5 +1,5 @@
 <ion-card mode="ios">
-  <ion-title class="ion-text-center ion-padding" style="color: black;">{{order._id}}</ion-title>
+  <ion-card-subtitle class="ion-padding">ID: {{order._id}}</ion-card-subtitle>
   <div *ngIf="!order.done">
     <ion-chip color="warning" mode="ios">
       <ion-label>Pendiente</ion-label>
