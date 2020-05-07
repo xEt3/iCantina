@@ -1,7 +1,7 @@
-<ion-card>
+<ion-card mode="ios">
   <ion-title class="ion-text-center ion-padding" style="color: black;">{{order._id}}</ion-title>
   <div *ngIf="!order.done">
-    <ion-chip color="warning" mode="ios" >
+    <ion-chip color="warning" mode="ios">
       <ion-label>Pendiente</ion-label>
     </ion-chip>
   </div>
@@ -20,7 +20,13 @@
           <h5>{{product.product.name}}</h5>
           <p>Precio Unidad: {{product.product.price| currency:'EUR'}}</p>
           <p>Cantidad: {{product.amount}}</p>
-          <p>Precio: {{product.product.price*product.amount| currency:'EUR'}}</p>
+          <ion-chip color="primary" mode="ios" class="ion-padding" style="bottom: 10px;">
+            <ion-icon slot="start" name="cash-outline"></ion-icon>
+            <ion-label>
+              Precio: {{product.product.price*product.amount| currency:'EUR'}}
+            </ion-label>
+          </ion-chip>
+
         </ion-text>
       </ion-item>
       <ion-item *ngIf="!product.product">
@@ -47,7 +53,7 @@
         </ion-chip>
       </ion-item>
     </div>
-    <ion-item lines='none'>
+    <ion-item lines='none' color="primary">
       <H4 class="ion-padding">Total: {{order.price | currency:'EUR'}}</H4>
     </ion-item>
 
