@@ -32,16 +32,10 @@ export class ProductsPage implements OnInit {
     })
   }
 
-  refresh(ev) {
-    this.nexts(ev);
-    this.infineScrollEnable=true;
-  }
-
-
-
   nexts(ev?,reset:boolean=false){
     if(reset){
       this.products=[];
+      this.infineScrollEnable=true;
     }
     this.productService.getProductAvailables(reset).subscribe(data => {
       this.products.push(...data.products);
