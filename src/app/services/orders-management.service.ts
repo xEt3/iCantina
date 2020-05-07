@@ -11,22 +11,17 @@ const url = environment.url
 })
 export class OrdersManagementService {
 
-  pageOrdersUninished = 0;
   pageOrdersClient = 0;
   pageOrdersEmployee = 0;
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
-  async getOrdersUnfinished(reset: boolean = false) {
+  async getOrdersUnfinished() {
     const token = await this.userService.getToken();
     const headers = new HttpHeaders({
       'x-token': token
     })
-    if (reset) {
-      this.pageOrdersUninished = 0;
-    }
-    this.pageOrdersUninished++;
-    return this.http.get<OrdersResponse>(`${url}/order/unfinished?page=${this.pageOrdersUninished}`);
+    return this.http.get<OrdersResponse>(`${url}/order/unfinished`);
   }
 
   deleteOrder(idOrder: string) {

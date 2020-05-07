@@ -10,7 +10,6 @@ import { OrdersService } from '../../services/orders.service';
 export class MyOrdersPage implements OnInit {
 
   isFinished: boolean = true;
-  infineScrollEnable = true;
   constructor(private ordersService: OrdersService) { }
 
   ordersFinished: Order[] = [];
@@ -24,14 +23,10 @@ export class MyOrdersPage implements OnInit {
     if (reset) {
       this.ordersFinished = [];
       this.ordersUnfinished = [];
-      this.infineScrollEnable = true;
     }
     const query = await this.ordersService.getMyOrders(reset)
     query.subscribe(data => {
       this.separateOrders(data.orders)
-      if (data.orders.length === 0) {
-        this.infineScrollEnable = false;
-      }
       if (ev) {
         ev.target.complete();
       }
