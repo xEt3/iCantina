@@ -1,0 +1,12 @@
+<ion-item lines="none">
+  Fecha de entrega: <span class="ion-padding">{{deliveryDate|date:'short'}}</span>
+</ion-item>
+<ion-item lines="none">
+  <ion-label>Entregado por: </ion-label>
+  <ion-chip color="primary" mode="ios" outline="true">
+    <ion-avatar>
+      <img src="assets/avatars/av-6.png" />
+    </ion-avatar>
+    <ion-label>{{mail}}</ion-label>
+  </ion-chip>
+</ion-item>

@@ -13,6 +13,11 @@ import { SendOrderComponent } from './send-order/send-order.component';
 import { ItemOrderComponent } from './item-order/item-order.component';
 import { ItemUserComponent } from './item-user/item-user.component';
 import { PopoverChangeRangeComponent } from './popover-change-range/popover-change-range.component';
+import { OrdersConfigurableComponent } from './orders-configurable/orders-configurable.component';
+import { OrderEditableComponent } from './order-editable/order-editable.component';
+import { FormsModule } from '@angular/forms';
+import { ItemProductsComponent } from './items/item-products/item-products.component';
+import { ItemDeliveryDataComponent } from './items/item-delivery-data/item-delivery-data.component';
 
 
 
@@ -26,12 +31,17 @@ import { PopoverChangeRangeComponent } from './popover-change-range/popover-chan
     ItemProductOrderComponent,
     ItemOrderComponent,
     ItemUserComponent,
-    PopoverChangeRangeComponent
+    PopoverChangeRangeComponent,
+    OrdersConfigurableComponent,
+    OrderEditableComponent,
+    ItemProductsComponent,
+    ItemDeliveryDataComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
-    PipesModule
+    PipesModule,
+    FormsModule
   ],exports:[
     SlideshowProductComponent,
     ProductAvailableComponent,
@@ -39,7 +49,9 @@ import { PopoverChangeRangeComponent } from './popover-change-range/popover-chan
     NavbarComponent,
     ItemProductOrderComponent,
     ItemOrderComponent,
-    ItemUserComponent
+    ItemUserComponent,
+    OrdersConfigurableComponent,
+    OrderEditableComponent
   ]
 })
 export class ComponentsModule { }

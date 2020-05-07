@@ -48,9 +48,10 @@ export class UIService {
     await alert.present();
   }
 
-  async presentToast(message: string) {
+  async presentToast(message: string,color="primary") {
     const toast = await this.toastController.create({
       message,
+      color,
       position: 'top',
       duration: 1500
     });

@@ -31,7 +31,10 @@ const routes: Routes = [
     path: 'user-management',
     loadChildren: () => import('./pages/user-management/user-management.module').then( m => m.UserManagementPageModule)
   },
-
+  {
+    path: 'order-management',
+    loadChildren: () => import('./pages/order-management/order-management.module').then( m => m.OrderManagementPageModule)
+  }
 
 ];
 

@@ -15,13 +15,24 @@
   </ion-refresher>
 
   <div *ngIf="isFinished">
-    <app-item-order *ngFor="let order of ordersFinished" [order]="order" class="ion-padding">
-    </app-item-order>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12" size-md="6"  *ngFor="let order of ordersFinished">
+          <app-item-order [order]="order" class="ion-padding">
+          </app-item-order>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </div>
 
   <div *ngIf="!isFinished">
-    <app-item-order *ngFor="let order of ordersUnfinished" [order]="order" class="ion-padding">
-    </app-item-order>
+    <ion-grid fixed>
+      <ion-row>
+        <ion-col size="12" size-lg="6" size-md="6" *ngFor="let order of ordersUnfinished">
+          <app-item-order  [order]="order" class="ion-padding"></app-item-order>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
   </div>
   

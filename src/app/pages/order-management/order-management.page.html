@@ -1,0 +1,33 @@
+<app-navbar title="Administrar pedidos"></app-navbar>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-segment (ionChange)="changePage($event)" value="todo">
+    <ion-segment-button value="todo">
+      <ion-label>Por hacer</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="ready">
+      <ion-label>Preparados</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="history">
+      <ion-label>Historial</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+<div *ngIf="page==='history' && ordersHistory.length>0">
+  <app-orders-configurable [orders]="ordersHistory"></app-orders-configurable>
+</div>
+<div *ngIf="page==='todo'&& ordersToDo.length>0">
+  <app-orders-configurable [orders]="ordersToDo"></app-orders-configurable>
+</div>
+<div *ngIf="page==='ready'&& ordersReady.length>0">
+  <app-orders-configurable [orders]="ordersReady"></app-orders-configurable>
+</div>
+
+  <!-- InfiniteScroll -->
+  <ion-infinite-scroll *ngIf="page==='history'" [disabled]="!infineScrollEnable" threshold="25%" position="bottom" (ionInfinite)="getOrdersHistory($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando productos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

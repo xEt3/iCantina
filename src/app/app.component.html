@@ -39,6 +39,12 @@
               <ion-icon slot="start" name="people"></ion-icon>
               <ion-label>Configurar usuarios</ion-label>
             </ion-item>
+
+            <ion-item routerLink="/order-management" routerDirecction="root"
+              [class.active-item]="selectedPath==='/order-management'" *ngIf="userService.isEmployee">
+              <ion-icon slot="start" name="documents"></ion-icon>
+              <ion-label>Administrar pedidos</ion-label>
+            </ion-item>
             
           </ion-menu-toggle>
 

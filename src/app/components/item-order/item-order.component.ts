@@ -8,6 +8,8 @@ import { Order } from '../../interfaces/OrderInterface';
 })
 export class ItemOrderComponent implements OnInit {
 
+  showProducts=false;
+
   @Input() order:Order;
 
   constructor() {
