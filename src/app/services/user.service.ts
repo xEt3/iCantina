@@ -18,6 +18,7 @@ export class UserService {
   private user: User = {};
   isLoged = false;
   isEmployee = false;
+  isAdmin = false;
 
 
   constructor(
@@ -74,6 +75,7 @@ export class UserService {
         if (resp.ok) {
           this.user = resp.user;
           this.isEmployee = this.user.employee
+          this.isAdmin = this.user.admin
           this.isLoged = true;
           resolve(true);
         } else {
@@ -127,6 +129,9 @@ export class UserService {
   logout() {
     this.token = null;
     this.user = null;
+    this.isAdmin=false;
+    this.isEmployee=false;
+    this.isLoged=false;
     this.storage.clear();
     this.navController.navigateRoot('/login', { animated: true });
   }

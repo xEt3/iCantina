@@ -11,17 +11,22 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ItemProductOrderComponent } from './item-product-order/item-product-order.component';
 import { SendOrderComponent } from './send-order/send-order.component';
 import { ItemOrderComponent } from './item-order/item-order.component';
+import { ItemUserComponent } from './item-user/item-user.component';
+import { PopoverChangeRangeComponent } from './popover-change-range/popover-change-range.component';
 
 
 
 @NgModule({
-  declarations: [SlideshowProductComponent
-    ,ProductAvailableComponent
-    ,SlideshowCartComponent
-    ,ProductOrderComponent
-    ,NavbarComponent
-    ,ItemProductOrderComponent
-    ,ItemOrderComponent
+  entryComponents:[PopoverChangeRangeComponent],
+  declarations: [SlideshowProductComponent,
+    ProductAvailableComponent,
+    SlideshowCartComponent,
+    ProductOrderComponent,
+    NavbarComponent,
+    ItemProductOrderComponent,
+    ItemOrderComponent,
+    ItemUserComponent,
+    PopoverChangeRangeComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +38,8 @@ import { ItemOrderComponent } from './item-order/item-order.component';
     SlideshowCartComponent,
     NavbarComponent,
     ItemProductOrderComponent,
-    ItemOrderComponent
+    ItemOrderComponent,
+    ItemUserComponent
   ]
 })
 export class ComponentsModule { }

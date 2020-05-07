@@ -1,0 +1,15 @@
+<app-navbar title="Configurar usuarios"></app-navbar>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="nexts($event,true)" pullFactor="0.8" pullMin="60" pullMax="120">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list>
+    <div *ngFor="let user of users">
+      <app-item-user [user]="user"></app-item-user>
+    </div>
+  </ion-list>
+  <ion-infinite-scroll [disabled]="!infineScrollEnable" threshold="25%" position="bottom" (ionInfinite)="nexts($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando productos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

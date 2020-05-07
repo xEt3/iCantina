@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { environment } from '../../environments/environment.prod';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsersResponse, User, UserByIDResponse, ChangeRangeUserResponse } from '../interfaces/UserInterfaces';
@@ -12,6 +12,9 @@ const url = environment.url;
 })
 export class UsersManagementService {
   private usersPage: number = 0;
+
+  userChange = new EventEmitter();
+
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
@@ -29,19 +32,11 @@ export class UsersManagementService {
   }
 
   getUsers(reset = false) {
-    return new Promise<User[]>(resolve => {
       if (reset) {
         this.usersPage = 0
       }
       this.usersPage++;
-      this.http.get<UsersResponse>(`${url}/user/?page=${this.usersPage}`).subscribe(data => {
-        if (data.ok) {
-          return resolve(data.users);
-        } else {
-          return resolve([])
-        }
-      })
-    })
+      return this.http.get<UsersResponse>(`${url}/user/?page=${this.usersPage}`)
   }
 
   convertUserToEmployee(idUser: String) {
@@ -51,8 +46,28 @@ export class UsersManagementService {
         const headers = new HttpHeaders({
           'x-token': token
         })
-        this.http.post<ChangeRangeUserResponse>(`${url}/user/changeRange/${idUser}`, { employee: true }, { headers }).subscribe(resp => {
+        this.http.post<ChangeRangeUserResponse>(`${url}/user/changeRange/${idUser}`, { employee: true,admin: false }, { headers }).subscribe(resp => {
           if (resp.ok) {
+            this.userChange.emit();
+            return resolve(true);
+          } else {
+            return resolve(false);
+          }
+        })
+      }
+    })
+  }
+
+  convertUserToClient(idUser: String) {
+    return new Promise(async resolve => {
+      const token = await this.userService.getToken();
+      if (token != null) {
+        const headers = new HttpHeaders({
+          'x-token': token
+        })
+        this.http.post<ChangeRangeUserResponse>(`${url}/user/changeRange/${idUser}`, { employee: false,admin: false }, { headers }).subscribe(resp => {
+          if (resp.ok) {
+            this.userChange.emit();
             return resolve(true);
           } else {
             return resolve(false);
@@ -71,6 +86,7 @@ export class UsersManagementService {
         })
         this.http.post<ChangeRangeUserResponse>(`${url}/user/changeRange/${idUser}`, { admin: true }, { headers }).subscribe(resp => {
           if (resp.ok) {
+            this.userChange.emit();
             return resolve(true);
           } else {
             return resolve(false);

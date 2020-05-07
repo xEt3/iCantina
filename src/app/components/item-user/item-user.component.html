@@ -1,0 +1,29 @@
+<ion-item>
+  <ion-avatar class="product-avatar-image" *ngIf="!user.employee&&!user.admin">
+    <img src="assets/avatars/av-1.png">
+  </ion-avatar>
+  <ion-avatar class="product-avatar-image" *ngIf="user.employee&&!user.admin">
+    <img src="assets/avatars/av-6.png">
+  </ion-avatar>
+  <ion-avatar class="product-avatar-image" *ngIf="user.admin">
+    <img src="assets/avatars/av-4.png">
+  </ion-avatar>
+  <ion-text style="padding-left: 10%;">
+    <h5>{{user.name}}</h5>
+    <p>Correo: {{user.mail}}</p>
+    <ion-chip *ngIf="user.admin" color="danger" mode="ios" class="ion-padding">
+      <ion-label>Administrador</ion-label>
+    </ion-chip>
+    <ion-chip *ngIf="user.employee&&!user.admin" color="warning" mode="ios" outline="true">
+      <ion-label *ngIf="user.employee&&!user.admin">Empleado</ion-label>
+    </ion-chip>
+    <ion-chip *ngIf="!user.employee&&!user.admin" color="tertiary" mode="ios">
+      <ion-label>Cliente</ion-label>
+    </ion-chip>
+  </ion-text>
+  <ion-buttons slot="end" *ngIf="user.mail!=='admin'">
+    <ion-button (click)="changeRange($event)">
+      <ion-icon slot="icon-only" name="settings"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-item>
