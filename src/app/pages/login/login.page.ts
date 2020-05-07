@@ -37,7 +37,7 @@ export class LoginPage implements OnInit {
     if(fLogin.valid){
       const valid = await this.userService.login(this.loginUser.email,this.loginUser.password);
       if(valid){
-        this.navController.navigateRoot('home',{animated:true});
+        this.navController.navigateRoot('products',{animated:true});
       }else{
         this.uiService.alertaInformativa('Usuario o contraseña incorrectos')
       }

@@ -5,9 +5,12 @@
       <ion-menu-button menu="menuId"></ion-menu-button>
     </ion-buttons>
 
-    <ion-buttons slot="end" *ngIf="userService.isLoged">
-      <ion-button (click)="logout()">
-        <ion-icon slot="icon-only" name="exit-outline" color="danger"></ion-icon>
+    <ion-buttons slot="end" >
+      <ion-button (click)="logout()" *ngIf="userService.isLoged">
+        <ion-icon slot="icon-only" name="log-out-outline" color="danger"></ion-icon>
+      </ion-button>
+      <ion-button (click)="login()" *ngIf="!userService.isLoged">
+        <ion-icon slot="icon-only" name="log-in-outline" color="success"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>

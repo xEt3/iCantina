@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, IonMenuToggle, NavController, IonMenu } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Observable } from 'rxjs';
 import { Page } from './interfaces/interfaces';
-import { DataService } from './services/data.service';
 import { ThrowStmt } from '@angular/compiler';
 import { Router, RouterEvent } from '@angular/router';
 import { UserService } from './services/user.service';
@@ -16,16 +15,16 @@ import { UserService } from './services/user.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
-  pages: Observable<Page[]>;
+  @ViewChild("IonMenu",{static:true})menu:IonMenu;
   public selectedPath = "/home";
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private dataService: DataService,
     private router: Router,
-    public userService:UserService
+    public userService:UserService,
+    private navController:NavController
   ) {
     this.initializeApp();
     this.router.events.subscribe((event: RouterEvent) => {
@@ -42,7 +41,16 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.pages = this.dataService.getMenuOpt();
     });
   }
+
+  closedMenu(){
+    this.menu.close(true);
+  }
+
+  logout(){
+    this.userService.logout();
+    this.closedMenu();
+  }
+
 }

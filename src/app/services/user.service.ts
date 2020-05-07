@@ -15,7 +15,7 @@ const url = environment.url;
 export class UserService {
 
   private token = null;
-  private user: User = {};
+  user: User = {};
   isLoged = false;
   isEmployee = false;
   isAdmin = false;
