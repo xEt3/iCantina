@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  url:'http://192.168.100.102:3000'
+  url:'http://play.bitcraft.es:3000'
 };
 export const  firebaseConfig = {
   apiKey: "AIzaSyCmcTd2DcFl-CjR5M1c0KA0-MrDBnNmltg",
