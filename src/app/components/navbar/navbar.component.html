@@ -9,7 +9,7 @@
       <ion-button (click)="logout()" *ngIf="userService.isLoged">
         <ion-icon slot="icon-only" name="log-out-outline" color="danger"></ion-icon>
       </ion-button>
-      <ion-button (click)="login()" *ngIf="!userService.isLoged">
+      <ion-button (click)="loginGoogle()" *ngIf="!userService.isLoged">
         <ion-icon slot="icon-only" name="log-in-outline" color="success"></ion-icon>
       </ion-button>
     </ion-buttons>

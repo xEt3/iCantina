@@ -44,13 +44,14 @@ export class AppComponent {
     });
   }
 
-  closedMenu(){
+  login(){
+    this.userService.loginGoogle();
     this.menu.close(true);
   }
 
   logout(){
     this.userService.logout();
-    this.closedMenu();
+    this.menu.close(true);
   }
 
 }

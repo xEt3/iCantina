@@ -8,12 +8,11 @@
           <div *ngIf="userService.isLoged">
             <ion-item lines="none">
               <ion-avatar>
-                <img src="assets/avatars/av-1.png" *ngIf="!userService.isAdmin&&!userService.isEmployee"/>
-                <img src="assets/avatars/av-6.png" *ngIf="!userService.isAdmin&&userService.isEmployee"/>
-                <img src="assets/avatars/av-4.png" *ngIf="userService.isAdmin"/>
+                <img [src]="userService.user.img" *ngIf="userService.user.img"/>
+                <img src="assets/avatars/av-6.png" *ngIf="!userService.user.img"/>
               </ion-avatar>
-              <ion-text class="ion-padding">
-                <h1>{{userService.user.name}}</h1>
+              <ion-text style="padding-left: 10px;">
+                <h4>{{userService.user.name}}</h4>
                 <ion-note>{{userService.user.mail}}</ion-note>
               </ion-text>
             </ion-item>
@@ -58,11 +57,11 @@
       <ion-footer class="ion-no-border">
         <ion-toolbar>
           <ion-buttons slot="end">
-            <ion-button routerLink="/login" routerDirecction="root" (click)="closedMenu()" *ngIf="!userService.isLoged">
+            <ion-button  (click)="login()" *ngIf="!userService.isLoged">
               <ion-icon slot="end" name="log-in"></ion-icon>
               Ingresar
             </ion-button>
-            <ion-button routerLink="/login" routerDirecction="root" (click)="logout()" *ngIf="userService.isLoged" color="danger">
+            <ion-button  (click)="logout()" *ngIf="userService.isLoged" color="danger">
               <ion-icon slot="end" name="log-out"></ion-icon>
               Cerrar sesión
             </ion-button>

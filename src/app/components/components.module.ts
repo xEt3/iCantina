@@ -18,7 +18,10 @@ import { OrderEditableComponent } from './order-editable/order-editable.componen
 import { FormsModule } from '@angular/forms';
 import { ItemProductsComponent } from './items/item-products/item-products.component';
 import { ItemDeliveryDataComponent } from './items/item-delivery-data/item-delivery-data.component';
-
+// Firebase
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { firebaseConfig } from '../../environments/environment.prod';
 
 
 @NgModule({
@@ -41,7 +44,9 @@ import { ItemDeliveryDataComponent } from './items/item-delivery-data/item-deliv
     CommonModule,
     IonicModule,
     PipesModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
   ],exports:[
     SlideshowProductComponent,
     ProductAvailableComponent,

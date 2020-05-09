@@ -3,8 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 import { User, LoginResponse, MeResponse, UpdateUserResponse } from '../interfaces/UserInterfaces';
 import { Storage } from '@ionic/storage';
-import { NavController } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { CartService } from './cart.service';
+import { UserGoogle } from '../interfaces/interfaces';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { UIService } from './ui.service';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import * as firebase from 'firebase/app';
+
 
 const url = environment.url;
 
@@ -25,14 +31,72 @@ export class UserService {
     private http: HttpClient,
     private storage: Storage,
     private navController: NavController,
-    private cartService:CartService
+    private cartService:CartService,
+    private afAuth: AngularFireAuth,
+    private uiService:UIService,
+    private googlePlus: GooglePlus,
+    private platform:Platform
   ) {
     this.verifyToken();
   }
 
-  register(user: User) {
+  async loginGoogle() {
+    let res
+    if (this.platform.is('android')) {
+     res = await this.loginGoogleAndroid();
+    } else {
+    res =   this.loginGoogleWeb();
+    }
+    return res;
+  }
+
+  private async loginGoogleAndroid() {
+    const res:any = await this.googlePlus.login({
+      'webClientId': '283447142110-u63bi9fk6n8vpssndtbaov52idlhk4st.apps.googleusercontent.com',
+      'offline': true
+    });
+    console.log(res)
+    if(res.userId){
+      const userGoogle:UserGoogle=
+      {
+        name:res.displayName, 
+        mail:res.email,
+        uid:res.userId,
+        img:res.imageUrl
+      }
+      const resp = await this.authUser(userGoogle);
+      return resp;
+    }else{
+      return false;
+    }
+  }
+
+  private async loginGoogleWeb() {
+    const res = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    const user:any = res.user;
+    console.log(user)
+    if(user.providerData[0].uid){
+      const userGoogle:UserGoogle=
+      {
+        name:user.displayName, 
+        mail:user.email,
+        uid:user.providerData[0].uid,
+        img:user.photoURL
+      }
+      console.log(userGoogle);
+      
+      const resp = await this.authUser(userGoogle);
+     return resp;
+    }else{
+      return false;
+    }
+  }
+
+  private authUser(user: UserGoogle) {
     return new Promise(resolve => {
-      this.http.post<LoginResponse>(`${url}/user/create`, user).subscribe(async resp => {
+      this.http.post<LoginResponse>(`${url}/google/auth`, user).subscribe(async resp => {
+       console.log(resp);
+       
         if (resp.ok) {
           await this.saveToken(resp.token);
           resolve(true);
@@ -64,7 +128,7 @@ export class UserService {
   async verifyToken(): Promise<boolean> {
     await this.loadToken()
     if (!this.token) {
-      this.navController.navigateRoot('/login');
+      this.navController.navigateRoot('/products');
       return Promise.resolve(false);
     }
     return new Promise<boolean>(resolve => {
@@ -79,27 +143,10 @@ export class UserService {
           this.isLoged = true;
           resolve(true);
         } else {
-          this.navController.navigateRoot('/login');
+          this.navController.navigateRoot('/products');
           resolve(false)
         }
       })
-    });
-  }
-
-  login(mail: string, password: string) {
-    this.cartService.reset();
-    return new Promise(resolve => {
-      const userCredentials = { mail, password };
-      this.http.post<LoginResponse>(`${url}/user/login`, userCredentials).subscribe(async data => {
-        if (data.ok) {
-          await this.saveToken(data.token);
-          resolve(true);
-        } else {
-          this.token = null
-          this.storage.clear();
-          resolve(false);
-        }
-      });
     });
   }
 
@@ -133,10 +180,7 @@ export class UserService {
     this.isEmployee=false;
     this.isLoged=false;
     this.storage.clear();
-    this.navController.navigateRoot('/login', { animated: true });
+    this.navController.navigateRoot('/products', { animated: true });
   }
-
-
-
 
 }

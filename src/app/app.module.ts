@@ -12,16 +12,31 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FileTransfer} from '@ionic-native/file-transfer/ngx';
 
+// Firebase
+import { firebaseConfig } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+
+
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,HttpClientModule,IonicStorageModule.forRoot()],
+  imports: [BrowserModule,
+     IonicModule.forRoot(),
+     AppRoutingModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireAuthModule
+  ],
   providers: [
     Camera,
     FileTransfer,
     StatusBar,
     SplashScreen,
+    GooglePlus,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
