@@ -13,7 +13,6 @@ import { SendOrderComponent } from '../../components/send-order/send-order.compo
 })
 export class ProductsPage implements OnInit {
   textToSearch="";
-  search=false;
   down = false;
   products: Product[] = [];
   productsOrders: ProductOrder[] = [];
