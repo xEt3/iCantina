@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Order } from '../../../interfaces/OrderInterface';
 
 @Component({
   selector: 'app-item-delivery-data',
@@ -7,8 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ItemDeliveryDataComponent implements OnInit {
 
-  @Input()mail:string;
-  @Input()deliveryDate:string;
+  @Input()order:Order;
 
   constructor() { }
 

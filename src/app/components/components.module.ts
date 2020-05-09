@@ -22,6 +22,7 @@ import { ItemDeliveryDataComponent } from './items/item-delivery-data/item-deliv
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { firebaseConfig } from '../../environments/environment.prod';
+import { ChipUserComponent } from '../chip-user/chip-user.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { firebaseConfig } from '../../environments/environment.prod';
     OrdersConfigurableComponent,
     OrderEditableComponent,
     ItemProductsComponent,
-    ItemDeliveryDataComponent
+    ItemDeliveryDataComponent,
+    ChipUserComponent
   ],
   imports: [
     CommonModule,

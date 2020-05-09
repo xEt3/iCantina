@@ -11,7 +11,7 @@ export class SlideshowProductComponent implements OnInit {
   @Input()products:Product[]=[]
 
   slidesOpt={
-    slidesPerView: 2.4,
+    slidesPerView: 2,
     breakpoints: {
       // when window width is <= 720px
       720: {

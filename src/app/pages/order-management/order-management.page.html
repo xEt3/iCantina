@@ -15,14 +15,14 @@
     </ion-segment-button>
   </ion-segment>
 
-<div *ngIf="page==='history' && ordersHistory.length>0">
-  <app-orders-configurable [orders]="ordersHistory"></app-orders-configurable>
+<div *ngIf="page==='history'">
+  <app-orders-configurable *ngIf="ordersHistory.length>0" [orders]="ordersHistory"></app-orders-configurable>
 </div>
-<div *ngIf="page==='todo'&& ordersToDo.length>0">
-  <app-orders-configurable [orders]="ordersToDo"></app-orders-configurable>
+<div *ngIf="page==='todo'">
+  <app-orders-configurable *ngIf="ordersToDo.length>0" [orders]="ordersToDo"></app-orders-configurable>
 </div>
-<div *ngIf="page==='ready'&& ordersReady.length>0">
-  <app-orders-configurable [orders]="ordersReady"></app-orders-configurable>
+<div *ngIf="page==='ready'">
+  <app-orders-configurable *ngIf=" ordersReady.length>0" [orders]="ordersReady"></app-orders-configurable>
 </div>
 
   <!-- InfiniteScroll -->

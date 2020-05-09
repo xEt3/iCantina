@@ -4,14 +4,11 @@
     <ion-label>{{status.name}}</ion-label>
     <ion-icon [name]="status.icon"></ion-icon>
   </ion-chip>
-  <ion-item>
+  <ion-item lines="none">
     <ion-label>Cliente: </ion-label>
-    <ion-chip color="primary" mode="ios" outline="true">
-      <ion-avatar>
-        <img src="assets/avatars/av-1.png" />
-      </ion-avatar>
-      <ion-label>{{order.client.mail}}</ion-label>
-    </ion-chip>
+  </ion-item>
+  <ion-item>
+    <app-chip-user [user]="order.client"></app-chip-user>
   </ion-item>
 
   <ion-list>
@@ -22,17 +19,15 @@
       </ion-item>
       <ion-item lines="none">
         <ion-label>Preparado por: </ion-label>
-        <ion-chip color="primary" mode="ios" outline="true">
-          <ion-avatar>
-            <img src="assets/avatars/av-6.png" />
-          </ion-avatar>
-          <ion-label *ngIf="order.employeeMarkReady">{{order.employeeMarkReady.mail}}</ion-label>
-        </ion-chip>
       </ion-item>
+      <ion-item lines="none">
+        <app-chip-user [user]=order.employeeMarkReady color="warning"></app-chip-user>
+      </ion-item>
+
     </div>
 
     <div *ngIf="order.done">
-      <app-item-delivery-data [mail]="order.employee.mail" [deliveryDate]="order.deliverDate"></app-item-delivery-data>
+      <app-item-delivery-data [order]="order"></app-item-delivery-data>
     </div>
 
     <div *ngIf="!order.done">
@@ -44,11 +39,11 @@
         <ion-label>
           <ion-button (click)="deleteOrder()" color="danger" fill="solid">
             <ion-icon slot="end" name="trash-outline"></ion-icon>
-           <ion-label>Borrar pedido</ion-label> 
+            <ion-label>Borrar pedido</ion-label>
           </ion-button>
           <ion-button (click)="markAsDone()" color="success" fill="solid">
             <ion-icon slot="end" name="paper-plane-outline"></ion-icon>
-           <ion-label>Entregar pedido</ion-label> 
+            <ion-label>Entregar pedido</ion-label>
           </ion-button>
         </ion-label>
       </ion-item>

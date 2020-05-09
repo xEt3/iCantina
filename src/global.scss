@@ -26,7 +26,6 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 .card-product-Slide{
-    
     height: 20% ;
 }
 .blur-image{
@@ -42,4 +41,15 @@
     height : 100% !important;  
     max-width: 60px !important; 
     max-height: 60px !important;
+}
+.image-slide {
+    width: 50px;
+    height: 200px;
+    // background-color: red;
+    /* Full height */
+    // height: 100%; 
+    /* Imagen centrada y colocada de forma elegante */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }

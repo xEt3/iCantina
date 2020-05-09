@@ -10,7 +10,7 @@
       Fecha: <span class="ion-padding">{{order.created|date:'short'}}</span>
     </ion-item>
     <app-item-products [products]="order.products"></app-item-products>
-    <app-item-delivery-data *ngIf="order.done" [mail]="order.employee.mail" [deliveryDate]="order.deliverDate">
+    <app-item-delivery-data *ngIf="order.done" [order]="order">
     </app-item-delivery-data>
     <ion-item lines='none' color="primary">
       <H4 class="ion-padding">Total: {{order.price | currency:'EUR'}}</H4>

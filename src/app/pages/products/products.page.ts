@@ -12,7 +12,8 @@ import { SendOrderComponent } from '../../components/send-order/send-order.compo
   styleUrls: ['./products.page.scss'],
 })
 export class ProductsPage implements OnInit {
-
+  textToSearch="";
+  search=false;
   down = false;
   products: Product[] = [];
   productsOrders: ProductOrder[] = [];

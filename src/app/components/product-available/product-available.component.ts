@@ -10,6 +10,11 @@ import { AlertController } from '@ionic/angular';
 })
 export class ProductAvailableComponent implements OnInit {
 
+  slideSoloOpt = {
+    allowSlideNext: false,
+    allowSlidePrev: false
+  }
+
   @Input() product:Product;
   constructor(private cartService:CartService,
     private alertCtrl:AlertController) { }
