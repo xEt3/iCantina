@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  url:'http://play.bitcraft.es:3000'
+  url:'https://icantina.bitcraft.es:443'
 };
 export const  firebaseConfig = {
   apiKey: "AIzaSyCmcTd2DcFl-CjR5M1c0KA0-MrDBnNmltg",

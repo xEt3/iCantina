@@ -20,7 +20,7 @@
           <p>Precio: {{product.price| currency:'EUR'}}</p>
         </ion-text>
         <ion-buttons slot="end">
-          <ion-toggle (ionChange)="changeStatusProduct(product)" [(ngModel)]="product.available"></ion-toggle>
+          <ion-toggle (click)="changeStatusProduct(product)" [(ngModel)]="product.available"></ion-toggle>
           <ion-button (click)="editProduct(product)">
             <ion-icon slot="icon-only" name="settings"></ion-icon>
           </ion-button>

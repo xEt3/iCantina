@@ -13,10 +13,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { FileTransfer} from '@ionic-native/file-transfer/ngx';
 
 // Firebase
-import { firebaseConfig } from '../environments/environment';
+import { firebaseConfig, environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 
@@ -29,7 +30,8 @@ import { GooglePlus } from '@ionic-native/google-plus/ngx';
     HttpClientModule,
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     Camera,

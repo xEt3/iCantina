@@ -31,72 +31,85 @@ export class UserService {
     private http: HttpClient,
     private storage: Storage,
     private navController: NavController,
-    private cartService:CartService,
+    private cartService: CartService,
     private afAuth: AngularFireAuth,
-    private uiService:UIService,
+    private uiService: UIService,
     private googlePlus: GooglePlus,
-    private platform:Platform
+    private platform: Platform
   ) {
     this.verifyToken();
   }
 
   async loginGoogle() {
     let res
-    if (this.platform.is('android')) {
-     res = await this.loginGoogleAndroid();
+    if (this.platform.is('android') && this.platform.is('cordova') || this.platform.is('capacitor')) {
+      res = await this.loginGoogleAndroid();
     } else {
-    res =   this.loginGoogleWeb();
+      res = this.loginGoogleWeb();
     }
     return res;
   }
 
   private async loginGoogleAndroid() {
-    const res:any = await this.googlePlus.login({
+    const res: any = await this.googlePlus.login({
       'webClientId': '283447142110-u63bi9fk6n8vpssndtbaov52idlhk4st.apps.googleusercontent.com',
       'offline': true
     });
     console.log(res)
-    if(res.userId){
-      const userGoogle:UserGoogle=
+    if (res.userId) {
+      const userGoogle: UserGoogle =
       {
-        name:res.displayName, 
-        mail:res.email,
-        uid:res.userId,
-        img:res.imageUrl
+        name: res.displayName,
+        mail: res.email,
+        uid: res.userId,
+        img: res.imageUrl
       }
       const resp = await this.authUser(userGoogle);
       return resp;
-    }else{
+    } else {
       return false;
     }
   }
 
   private async loginGoogleWeb() {
-    const res = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-    const user:any = res.user;
+    let res
+    try {
+      res = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    } catch (error) {
+      console.log('fac¡lla');
+    }
+    if(!res){
+      await this.sleep(100);
+      res = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    }
+    const user: any = res.user;
     console.log(user)
-    if(user.providerData[0].uid){
-      const userGoogle:UserGoogle=
+    if (user.providerData[0].uid) {
+      const userGoogle: UserGoogle =
       {
-        name:user.displayName, 
-        mail:user.email,
-        uid:user.providerData[0].uid,
-        img:user.photoURL
+        name: user.displayName,
+        mail: user.email,
+        uid: user.providerData[0].uid,
+        img: user.photoURL
       }
       console.log(userGoogle);
-      
+
       const resp = await this.authUser(userGoogle);
-     return resp;
-    }else{
+      return resp;
+    } else {
       return false;
     }
+  }
+
+  private sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   private authUser(user: UserGoogle) {
     return new Promise(resolve => {
       this.http.post<LoginResponse>(`${url}/google/auth`, user).subscribe(async resp => {
-       console.log(resp);
-       
+        console.log(resp);
+
         if (resp.ok) {
           await this.saveToken(resp.token);
           resolve(true);
@@ -176,9 +189,9 @@ export class UserService {
   logout() {
     this.token = null;
     this.user = null;
-    this.isAdmin=false;
-    this.isEmployee=false;
-    this.isLoged=false;
+    this.isAdmin = false;
+    this.isEmployee = false;
+    this.isLoged = false;
     this.storage.clear();
     this.navController.navigateRoot('/products', { animated: true });
   }

@@ -39,12 +39,12 @@
 
 <!-- cart -->
 <ion-footer *ngIf="productsOrders.length>0">
-  <ion-toolbar>
+  <ion-toolbar (click)="down=!down">
     <ion-label>Carrito</ion-label>
     <ion-card-subtitle>{{cartService.price| currency:'EUR'}}</ion-card-subtitle>
     <ion-icon slot="start" name="cart" class="ion-padding"></ion-icon>
     <ion-buttons slot="end">
-      <ion-button (click)="down=!down">
+      <ion-button >
         <ion-icon *ngIf="down" slot="icon-only" name="chevron-down"></ion-icon>
         <ion-icon *ngIf="!down" slot="icon-only" name="chevron-up"></ion-icon>
       </ion-button>
