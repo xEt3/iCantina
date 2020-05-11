@@ -19,7 +19,7 @@
   </ion-grid>
 
   <!-- products -->
-  <ion-grid >
+  <ion-grid flex-wrap: nowrap>
     <ion-row *ngIf="term===undefined">
       <ion-col   size=11 size-lg="3" size-md="4" size-sm="6" size-xs="6" *ngFor="let product of products">
         <app-card-product-available *ngIf="term===undefined" [product]="product"></app-card-product-available>
