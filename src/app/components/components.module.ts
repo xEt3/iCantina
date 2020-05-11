@@ -25,7 +25,6 @@ import { GridOrdersEditableComponent } from './orders-components/grid-orders-edi
 import { CardOrderEditableComponent } from './orders-components/card-order-editable/card-order-editable.component';
 import { ItemProductEditableComponent } from './products-components/item-product-editable/item-product-editable.component';
 import { EditProductComponent } from './products-components/edit-product/edit-product.component';
-import { EditProductComponent } from './products/edit-product/edit-product.component';
 
 
 

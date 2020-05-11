@@ -6,7 +6,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { UIService } from '../../../services/ui.service';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
-import { GoogleAuthService } from '../../../google-auth.service';
 import { UserGoogle } from '../../../interfaces/interfaces';
 @Component({
   selector: 'app-navbar',
