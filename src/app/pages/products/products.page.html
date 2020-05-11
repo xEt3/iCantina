@@ -8,6 +8,8 @@
   <ion-refresher slot="fixed" (ionRefresh)="nexts($event,true)" pullFactor="0.8" pullMin="60" pullMax="120">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+
+  <!-- Loading animation -->
   <ion-grid *ngIf="loading">
     <ion-row>
       <ion-col class="ion-text-center">
@@ -16,26 +18,26 @@
     </ion-row>
   </ion-grid>
 
+  <!-- products -->
   <ion-grid fixed>
     <ion-row *ngIf="term===undefined">
       <ion-col size="6" size-lg="3" size-md="4" size-sm="6" size-xs="6" *ngFor="let product of products">
-        <app-product-available *ngIf="term===undefined" [product]="product"></app-product-available>
+        <app-card-product-available *ngIf="term===undefined" [product]="product"></app-card-product-available>
       </ion-col>
     </ion-row>
     <ion-row *ngIf="term!==undefined">
       <ion-col size="6" size-lg="3" size-md="4" size-sm="6" size-xs="6" *ngFor="let product of productsFound">
-        <app-product-available [product]="product"></app-product-available>
+        <app-card-product-available [product]="product"></app-card-product-available>
       </ion-col>
     </ion-row>
   </ion-grid>
+
   <!-- InfiniteScroll -->
   <ion-infinite-scroll [disabled]="!infineScrollEnable" threshold="25%" position="bottom" (ionInfinite)="nexts($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando productos...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
-
-
 
 <!-- cart -->
 <ion-footer *ngIf="productsOrders.length>0">
@@ -44,7 +46,7 @@
     <ion-card-subtitle>{{cartService.price| currency:'EUR'}}</ion-card-subtitle>
     <ion-icon slot="start" name="cart" class="ion-padding"></ion-icon>
     <ion-buttons slot="end">
-      <ion-button >
+      <ion-button>
         <ion-icon *ngIf="down" slot="icon-only" name="chevron-down"></ion-icon>
         <ion-icon *ngIf="!down" slot="icon-only" name="chevron-up"></ion-icon>
       </ion-button>

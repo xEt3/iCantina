@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../interfaces/UserInterfaces';
-import { UsersManagementService } from '../../services/users-management.service';
+import { User } from '../../../interfaces/UserInterfaces';
+import { UsersManagementService } from '../../../services/users-management.service';
 import { PopoverController } from '@ionic/angular';
 import { PopoverChangeRangeComponent } from '../popover-change-range/popover-change-range.component';
 

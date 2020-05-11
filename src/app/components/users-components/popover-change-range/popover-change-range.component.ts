@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PopoverController, ModalController } from '@ionic/angular';
-import { UsersManagementService } from '../../services/users-management.service';
-import { User } from '../../interfaces/UserInterfaces';
+import { UsersManagementService } from '../../../services/users-management.service';
+import { User } from '../../../interfaces/UserInterfaces';
 import { resolve } from 'url';
 
 @Component({

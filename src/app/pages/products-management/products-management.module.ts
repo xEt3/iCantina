@@ -9,8 +9,8 @@ import { ProductsManagementPageRoutingModule } from './products-management-routi
 import { ProductsManagementPage } from './products-management.page';
 import { PipesModule } from '../../pipes/pipes.module';
 import { ComponentsModule } from '../../components/components.module';
-import { NewProductComponent } from '../../components/new-product/new-product.component';
-import { EditProductComponent } from '../../components/edit-product/edit-product.component';
+import { NewProductComponent } from '../../components/products-components/new-product/new-product.component';
+import { EditProductComponent } from '../../components/products-components/edit-product/edit-product.component';
 
 @NgModule({
   entryComponents:[NewProductComponent,EditProductComponent],

@@ -1,12 +1,12 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../../interfaces/ProductInterfaces';
-import { CartService } from '../../services/cart.service';
+import { Product } from '../../../interfaces/ProductInterfaces';
+import { CartService } from '../../../services/cart.service';
 import { AlertController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-product-available',
-  templateUrl: './product-available.component.html',
-  styleUrls: ['./product-available.component.scss'],
+  selector: 'app-card-product-available',
+  templateUrl: './card-product-available.component.html',
+  styleUrls: ['./card-product-available.component.scss'],
 })
 export class ProductAvailableComponent implements OnInit {
 

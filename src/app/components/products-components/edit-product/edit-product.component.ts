@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../../interfaces/ProductInterfaces';
+import { Product } from '../../../interfaces/ProductInterfaces';
 import { ModalController } from '@ionic/angular';
-import { ProductsManagementService } from '../../services/products-management.service';
-import { UIService } from '../../services/ui.service';
+import { ProductsManagementService } from '../../../services/products-management.service';
+import { UIService } from '../../../services/ui.service';
 
 @Component({
   selector: 'app-edit-product',

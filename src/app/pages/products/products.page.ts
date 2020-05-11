@@ -4,6 +4,7 @@ import { Product } from '../../interfaces/ProductInterfaces';
 import { ProductOrder } from '../../../../model/productOrder';
 import { CartService } from '../../services/cart.service';
 import { ModalController } from '@ionic/angular';
+import { SendOrderComponent } from '../../components/orders-components/send-order/send-order.component';
 
 @Component({
   selector: 'app-products',

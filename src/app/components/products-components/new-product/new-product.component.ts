@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, IonicModule } from '@ionic/angular';
-import { tempImage } from '../../interfaces/interfaces';
+import { tempImage } from '../../../interfaces/interfaces';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { ProductsManagementService } from '../../services/products-management.service';
-import { Product } from '../../interfaces/ProductInterfaces';
-import { UIService } from '../../services/ui.service';
+import { ProductsManagementService } from '../../../services/products-management.service';
+import { Product } from '../../../interfaces/ProductInterfaces';
+import { UIService } from '../../../services/ui.service';
 import { identifierModuleUrl } from '@angular/compiler';
 
 declare var window: any;

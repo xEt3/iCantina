@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/ProductInterfaces';
 import { ProductsManagementService } from '../../services/products-management.service';
 import { ModalController } from '@ionic/angular';
-import { NewProductComponent } from '../../components/new-product/new-product.component';
-import { EditProductComponent } from '../../components/edit-product/edit-product.component';
+import { NewProductComponent } from '../../components/products-components/new-product/new-product.component';
+import { EditProductComponent } from '../../components/products-components/edit-product/edit-product.component';
 
 @Component({
   selector: 'app-products-management',
