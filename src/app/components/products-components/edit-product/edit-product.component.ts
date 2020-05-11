@@ -37,9 +37,12 @@ export class EditProductComponent implements OnInit {
           'dismissed': true
         });
       }
-
     })
+  }
 
+  async deleteProduct(){
+    await this.productsManagementService.deleteProduct(this.product._id);
+    this.dismiss();
   }
 
 }

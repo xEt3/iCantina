@@ -22,6 +22,6 @@ import { EditProductComponent } from '../../components/products-components/edit-
     PipesModule,
     ComponentsModule
   ],
-  declarations: [ProductsManagementPage,NewProductComponent,EditProductComponent]
+  declarations: [ProductsManagementPage,NewProductComponent]
 })
 export class ProductsManagementPageModule {}

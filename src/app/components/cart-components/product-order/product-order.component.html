@@ -8,8 +8,10 @@
       <!-- <img [src]="productOrder.product.imgs[0] | image" *ngIf="productOrder.product.imgs.length>0">
       <img src="assets/sandwitch-default.jpg" *ngIf="productOrder.product.imgs.length===0"> -->
       <ion-card-title>{{productOrder.product.name}}</ion-card-title>
-      <ion-label> <br>Cantidad : {{productOrder.amount}}</ion-label>
-      <ion-card-subtitle>{{productOrder.product.price * productOrder.amount | currency:'EUR'}}</ion-card-subtitle>
+      <ion-label> <br>Cantidad : {{productOrder.amount}} <br></ion-label>
+      <ion-chip color="primary" mode="ios">
+        <ion-label>{{productOrder.product.price * productOrder.amount | currency:'EUR'}}</ion-label>
+      </ion-chip>
     </ion-card-header>
       <ion-button (click)="deleteProductToCart(productOrder.product)" color="light">
         <ion-icon slot="icon-only" name="trash" color="danger"></ion-icon>

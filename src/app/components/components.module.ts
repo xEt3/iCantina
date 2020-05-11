@@ -23,11 +23,14 @@ import { SlideshowCartComponent } from './cart-components/slideshow-cart/slidesh
 import { CardOrderClientComponent } from './orders-components/card-order-client/card-order-client.component';
 import { GridOrdersEditableComponent } from './orders-components/grid-orders-editable/grid-orders-editable.component';
 import { CardOrderEditableComponent } from './orders-components/card-order-editable/card-order-editable.component';
+import { ItemProductEditableComponent } from './products-components/item-product-editable/item-product-editable.component';
+import { EditProductComponent } from './products-components/edit-product/edit-product.component';
+import { EditProductComponent } from './products/edit-product/edit-product.component';
 
 
 
 @NgModule({
-  entryComponents:[PopoverChangeRangeComponent],
+  entryComponents:[PopoverChangeRangeComponent,EditProductComponent],
   declarations: [SlideshowProductComponent,
     ProductAvailableComponent,
     SlideshowCartComponent,
@@ -42,6 +45,8 @@ import { CardOrderEditableComponent } from './orders-components/card-order-edita
     ItemProductsComponent,
     ItemDeliveryDataComponent,
     ChipUserComponent,
+    ItemProductEditableComponent,
+    EditProductComponent
   ],
   imports: [
     CommonModule,
@@ -60,6 +65,7 @@ import { CardOrderEditableComponent } from './orders-components/card-order-edita
     ItemUserComponent,
     GridOrdersEditableComponent,
     CardOrderEditableComponent,
+    ItemProductEditableComponent
   
   ]
 })
