@@ -19,7 +19,8 @@ export class NewProductComponent implements OnInit {
   tempImages: tempImage[] = []
   product:Product={
     name:"",
-    price:0
+    price:0,
+    imgs:this.tempImages
   }
 
   constructor(private modalController: ModalController,
@@ -90,8 +91,9 @@ export class NewProductComponent implements OnInit {
       this.ui.presentToast('nombre invalido'+this.product.name);
       return
     }
-    if (this.product.price<=0) {
+    if (this.product.price<=0 ) {
       this.ui.presentToast('precio invalido');
+      return;
     }
     this.productsManagementService.newProduct(this.product).then(data=>{
       if(data){

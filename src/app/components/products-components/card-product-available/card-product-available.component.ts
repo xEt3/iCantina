@@ -14,7 +14,7 @@ export class ProductAvailableComponent implements OnInit {
     allowSlideNext: false,
     allowSlidePrev: false
   }
-
+  @Input() disabled=false;
   @Input() product:Product;
   constructor(private cartService:CartService,
     private alertCtrl:AlertController) { }

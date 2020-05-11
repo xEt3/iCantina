@@ -11,17 +11,10 @@
 
   <ion-list>
     <ion-grid fixed>
-      <ion-row *ngIf="product.imgs.length===0">
-        <ion-col size="12">
+      <ion-row class="ion-justify-content-center" >
+        <ion-col size="6" size-lg="3" size-md="4" size-sm="6" size-xs="6">
          <div class="ion-align-items-center">
-          <ion-img src="assets/sandwitch-default.jpg"></ion-img>
-         </div>
-        </ion-col>
-      </ion-row>
-      <ion-row *ngIf="product.imgs.length>0">
-        <ion-col size="12">
-         <div class="ion-align-items-center">
-          <ion-img [src]="product.imgs[0] | image:product.user"></ion-img>
+          <app-card-product-available [product]="product" [disabled]=true></app-card-product-available>
          </div>
         </ion-col>
       </ion-row>

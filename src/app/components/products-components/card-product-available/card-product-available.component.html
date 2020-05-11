@@ -22,7 +22,7 @@
     </ion-chip>
   </ion-item>
   <ion-item class="ion-text-center">
-    <ion-button fill="solid" size="small" shape="round" (click)="addProductToCart()" slot="end">
+    <ion-button fill="solid" size="small" shape="round" (click)="addProductToCart()" slot="end" [disabled]="disabled">
       <ion-icon slot="icon-only" name="add"></ion-icon>
       <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
     </ion-button>
