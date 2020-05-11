@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Order } from '../../../interfaces/OrderInterface';
+import { Order } from '../../../../interfaces/OrderInterface';
 
 @Component({
   selector: 'app-item-delivery-data',

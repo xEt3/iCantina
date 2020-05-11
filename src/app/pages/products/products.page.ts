@@ -4,8 +4,6 @@ import { Product } from '../../interfaces/ProductInterfaces';
 import { ProductOrder } from '../../../../model/productOrder';
 import { CartService } from '../../services/cart.service';
 import { ModalController } from '@ionic/angular';
-import { SendOrderComponent } from '../../components/send-order/send-order.component';
-import { getLocaleFirstDayOfWeek } from '@angular/common';
 
 @Component({
   selector: 'app-products',

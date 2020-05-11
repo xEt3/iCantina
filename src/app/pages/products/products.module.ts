@@ -8,7 +8,7 @@ import { ProductsPageRoutingModule } from './products-routing.module';
 
 import { ProductsPage } from './products.page';
 import { ComponentsModule } from '../../components/components.module';
-import { SendOrderComponent } from '../../components/send-order/send-order.component';
+import { SendOrderComponent } from '../../components/orders-components/send-order/send-order.component';
 
 @NgModule({
   entryComponents:[SendOrderComponent],

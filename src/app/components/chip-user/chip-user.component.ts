@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../interfaces/UserInterfaces';
+import { User } from '../../interfaces/UserInterfaces';
 
 @Component({
   selector: 'app-chip-user',

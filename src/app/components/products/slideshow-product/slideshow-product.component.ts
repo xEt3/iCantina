@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../../interfaces/ProductInterfaces';
+import { Product } from '../../../interfaces/ProductInterfaces';
 
 @Component({
   selector: 'app-slideshow-product',

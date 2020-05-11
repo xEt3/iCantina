@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from '../../interfaces/ProductInterfaces';
-import { ProductOrder } from '../../../../model/productOrder';
+import { ProductOrder } from '../../../../../model/productOrder';
 
 @Component({
   selector: 'app-slideshow-cart',

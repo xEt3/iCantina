@@ -18,8 +18,8 @@
     <ion-grid fixed>
       <ion-row>
         <ion-col size="12" size-md="6"  *ngFor="let order of ordersFinished">
-          <app-item-order [order]="order" class="ion-padding">
-          </app-item-order>
+          <app-card-order-client [order]="order" class="ion-padding">
+          </app-card-order-client>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -29,7 +29,7 @@
     <ion-grid fixed>
       <ion-row>
         <ion-col size="12" size-lg="6" size-md="6" *ngFor="let order of ordersUnfinished">
-          <app-item-order  [order]="order" class="ion-padding"></app-item-order>
+          <app-card-order-client  [order]="order" class="ion-padding"></app-card-order-client>
         </ion-col>
       </ion-row>
     </ion-grid>

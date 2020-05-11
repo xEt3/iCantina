@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Order } from '../../interfaces/OrderInterface';
-import { OrdersManagementService } from '../../services/orders-management.service';
-import { UIService } from '../../services/ui.service';
+import { Order } from '../../../interfaces/OrderInterface';
+import { OrdersManagementService } from '../../../services/orders-management.service';
+import { UIService } from '../../../services/ui.service';
 
 @Component({
-  selector: 'app-order-editable',
-  templateUrl: './order-editable.component.html',
-  styleUrls: ['./order-editable.component.scss'],
+  selector: 'app-card-order-editable',
+  templateUrl: './card-order-editable.component.html',
+  styleUrls: ['./card-order-editable.component.scss'],
 })
-export class OrderEditableComponent implements OnInit {
+export class CardOrderEditableComponent implements OnInit {
 
   @Input() order: Order;
 

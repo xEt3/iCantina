@@ -16,13 +16,13 @@
   </ion-segment>
 
 <div *ngIf="page==='history'">
-  <app-orders-configurable *ngIf="ordersHistory.length>0" [orders]="ordersHistory"></app-orders-configurable>
+  <app-grid-orders-editable *ngIf="ordersHistory.length>0" [orders]="ordersHistory"></app-grid-orders-editable>
 </div>
 <div *ngIf="page==='todo'">
-  <app-orders-configurable *ngIf="ordersToDo.length>0" [orders]="ordersToDo"></app-orders-configurable>
+  <app-grid-orders-editable *ngIf="ordersToDo.length>0" [orders]="ordersToDo"></app-grid-orders-editable>
 </div>
 <div *ngIf="page==='ready'">
-  <app-orders-configurable *ngIf=" ordersReady.length>0" [orders]="ordersReady"></app-orders-configurable>
+  <app-grid-orders-editable *ngIf=" ordersReady.length>0" [orders]="ordersReady"></app-grid-orders-editable>
 </div>
 
   <!-- InfiniteScroll -->

@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ProductOrder } from '../../../../model/productOrder';
-import { CartService } from '../../services/cart.service';
-import { UIService } from '../../services/ui.service';
-import { OrdersService } from '../../services/orders.service';
-import { Order, ProductElement, OrderToSend } from '../../interfaces/OrderInterface';
+import { ProductOrder } from '../../../../../model/productOrder';
+import { CartService } from '../../../services/cart.service';
+import { UIService } from '../../../services/ui.service';
+import { OrdersService } from '../../../services/orders.service';
+import { OrderToSend, ProductElement } from '../../../interfaces/OrderInterface';
+
 
 @Component({
   selector: 'app-send-order',
