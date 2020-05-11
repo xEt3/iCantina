@@ -19,9 +19,9 @@
   </ion-grid>
 
   <!-- products -->
-  <ion-grid fixed>
+  <ion-grid >
     <ion-row *ngIf="term===undefined">
-      <ion-col size="6" size-lg="3" size-md="4" size-sm="6" size-xs="6" *ngFor="let product of products">
+      <ion-col   size=11 size-lg="3" size-md="4" size-sm="6" size-xs="6" *ngFor="let product of products">
         <app-card-product-available *ngIf="term===undefined" [product]="product"></app-card-product-available>
       </ion-col>
     </ion-row>
@@ -40,10 +40,10 @@
 </ion-content>
 
 <!-- cart -->
-<ion-footer *ngIf="productsOrders.length>0">
-  <ion-toolbar (click)="down=!down">
+<ion-footer *ngIf="productsOrders.length>0" >
+  <ion-toolbar (click)="down=!down" color="tertiary">
     <ion-label>Carrito</ion-label>
-    <ion-card-subtitle>{{cartService.price| currency:'EUR'}}</ion-card-subtitle>
+    <ion-label><br>{{cartService.price| currency:'EUR'}}</ion-label>
     <ion-icon slot="start" name="cart" class="ion-padding"></ion-icon>
     <ion-buttons slot="end">
       <ion-button>

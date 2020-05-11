@@ -8,26 +8,38 @@ import { ProductOrder } from '../../../../../model/productOrder';
 })
 export class SlideshowCartComponent implements OnInit {
 
-  @Input()productsOrder:ProductOrder[]=[]
+  @Input() productsOrder: ProductOrder[] = []
 
 
-  slidesOpt={
-    slidesPerView: 2.4,
+  slidesOpt = {
+    slidesPerView: 1,
     breakpoints: {
       // when window width is <= 720px
+      300: {
+        slidesPerView: 1.2
+      },
+      400: {
+        slidesPerView: 1.5
+      },
+      600: {
+        slidesPerView: 1.8
+      },
       720: {
-          slidesPerView: 3.2
+        slidesPerView: 1.9
       },
       // when window width is <= 999px
       999: {
-          slidesPerView: 5.2
-          
-      }},
+        slidesPerView: 2.4
+      },
+      1200: {
+        slidesPerView: 3.4
+      }
+    },
     freeMode: true
   };
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 }
