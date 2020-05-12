@@ -41,6 +41,8 @@
     "core-js": "^2.5.4",
     "firebase": "^7.14.3",
     "jquery": "^3.5.1",
+    "lozad": "^1.14.0",
+    "ngx-image-compress": "^8.0.4",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
     "zone.js": "~0.9.1"

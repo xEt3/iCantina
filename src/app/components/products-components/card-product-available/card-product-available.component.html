@@ -1,21 +1,21 @@
 <ion-card mode='md'>
-  <ion-slides mode="ios" pager="ios" scrollbar="ios" *ngIf="product.imgs.length>1 && !disabled">
+  <ion-slides mode="ios" pager="ios" scrollbar="ios" *ngIf="product.imgs.length>1 && !newProduct">
     <ion-slide *ngFor="let img of product.imgs" class="image-slide" [style]="img |image: product.user | domSanitazer">
     </ion-slide>
   </ion-slides>
-  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="product.imgs.length===1&& !disabled">
+  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="product.imgs.length===1&& !newProduct">
     <ion-slide class="image-slide" [style]="product.imgs[0] |image: product.user | domSanitazer">
     </ion-slide>
   </ion-slides>
-  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="tempImagesService.tempImages.length===0 && disabled||product.imgs.length===0 && !disabled ">
+  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="tempImagesService.tempImages.length===0 && newProduct||product.imgs.length===0 && !newProduct ">
     <ion-slide class="image-slide" [style]="'assets/sandwitch-default.jpg' | domSanitazer">
     </ion-slide>
   </ion-slides> 
-  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="disabled && tempImagesService.tempImages.length===1">
+  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="newProduct && tempImagesService.tempImages.length===1">
     <ion-slide class="image-slide" [style]="tempImagesService.tempImages[0].img | domSanitazer">
     </ion-slide>
   </ion-slides>
-  <ion-slides mode="ios" pager="ios" scrollbar="ios" *ngIf="disabled && tempImagesService.tempImages.length>1">
+  <ion-slides mode="ios" pager="ios" scrollbar="ios" *ngIf="newProduct && tempImagesService.tempImages.length>1">
     <ion-slide *ngFor="let img of tempImagesService.tempImages" class="image-slide" [style]="img.img | domSanitazer">
     </ion-slide>
   </ion-slides>

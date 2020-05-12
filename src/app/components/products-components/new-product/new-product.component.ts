@@ -49,7 +49,7 @@ export class NewProductComponent implements OnInit {
     const options: CameraOptions = {
       quality: 100,
       targetWidth: 400,
-      targetHeight: 400,
+      targetHeight: 500,
       allowEdit:true,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
@@ -64,8 +64,8 @@ export class NewProductComponent implements OnInit {
   galery() {
     const options: CameraOptions = {
       quality: 60,
-      targetWidth: 300,
-      targetHeight: 200,
+      targetWidth: 400,
+      targetHeight: 500,
       allowEdit:true,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
