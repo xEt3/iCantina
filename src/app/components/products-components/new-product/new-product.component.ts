@@ -7,6 +7,7 @@ import { Product } from '../../../interfaces/ProductInterfaces';
 import { UIService } from '../../../services/ui.service';
 import { identifierModuleUrl } from '@angular/compiler';
 import { TempImagesService } from '../../../temp-images.service';
+import { Plugins, CameraResultType } from '@capacitor/core';
 
 declare var window: any;
 

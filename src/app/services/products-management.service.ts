@@ -21,7 +21,7 @@ export class ProductsManagementService {
     private userService: UserService,
     private fileTransefer: FileTransfer) { }
 
-    
+
   async getProducts(reset: boolean = false) {
     const token = await this.userService.getToken();
     const headers = new HttpHeaders({
@@ -119,14 +119,14 @@ export class ProductsManagementService {
     })
   }
 
-  updateProduct(product:Product) {
-    const idProduct=product._id;
+  updateProduct(product: Product) {
+    const idProduct = product._id;
     return new Promise(async resolve => {
       const token = await this.userService.getToken();
       const headers = new HttpHeaders({
         'x-token': token
       })
-      this.http.post<productResponse>(`${url}/product/update/${idProduct}`,product, { headers }).subscribe(data => {
+      this.http.post<productResponse>(`${url}/product/update/${idProduct}`, product, { headers }).subscribe(data => {
         if (data.ok) {
           return resolve(data.product);
         } else {
@@ -136,7 +136,7 @@ export class ProductsManagementService {
     })
   }
 
-  deleteImgProduct(imageName: string,idProduct:string) {
+  deleteImgProduct(imageName: string, idProduct: string) {
     return new Promise(async (resolve) => {
       const token = await this.userService.getToken();
       const headers = new HttpHeaders({

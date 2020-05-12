@@ -24,5 +24,9 @@
     <param name="android-package" value="io.sqlc.SQLitePlugin"/>
   </feature>
 
+  <feature name="OneSignalPush">
+    <param name="android-package" value="com.plugin.gcm.OneSignalPush"/>
+  </feature>
+
   
 </widget>

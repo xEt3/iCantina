@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-
 import { Platform, IonMenuToggle, NavController, IonMenu } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
@@ -8,6 +7,7 @@ import { Page } from './interfaces/interfaces';
 import { ThrowStmt } from '@angular/compiler';
 import { Router, RouterEvent } from '@angular/router';
 import { UserService } from './services/user.service';
+import { PushService } from './services/push.service';
 
 @Component({
   selector: 'app-root',
@@ -24,8 +24,9 @@ export class AppComponent {
     private statusBar: StatusBar,
     private router: Router,
     public userService:UserService,
-    private navController:NavController
-  ) {
+    private navController:NavController,
+    private pushService:PushService
+    ) {
     this.initializeApp();
     this.router.events.subscribe((event: RouterEvent) => {
       this.selectedPath = event.url || this.selectedPath;
@@ -41,6 +42,7 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.pushService.initConfiguration();
     });
   }
 
