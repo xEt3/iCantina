@@ -105,7 +105,7 @@ export class NewProductComponent implements OnInit {
       this.ui.presentToast('nombre invalido'+this.product.name);
       return
     }
-    if (this.product.price<=0 ) {
+    if (this.product.price<=0 || this.product.price>1000000 ) {
       this.ui.presentToast('precio invalido');
       return;
     }

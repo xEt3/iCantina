@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { UIService } from './ui.service';
 import { GooglePlus } from '@ionic-native/google-plus/ngx';
 import * as firebase from 'firebase/app';
+import { PushService } from './push.service';
 
 
 const url = environment.url;
@@ -35,7 +36,8 @@ export class UserService {
     private afAuth: AngularFireAuth,
     private uiService: UIService,
     private googlePlus: GooglePlus,
-    private platform: Platform
+    private platform: Platform,
+    private pushService:PushService
   ) {
     this.verifyToken();
   }
@@ -154,9 +156,16 @@ export class UserService {
           this.isEmployee = this.user.employee
           this.isAdmin = this.user.admin
           this.isLoged = true;
+          this.pushService.addTags('user_id_db',this.user._id)
+          if(this.user.employee){
+            this.pushService.addTags('user_type','employee');
+          }else{
+            this.pushService.addTags('user_type','client');
+          }
           resolve(true);
         } else {
           this.navController.navigateRoot('/products');
+          this.pushService.addTags('user_type','client');
           resolve(false)
         }
       })
@@ -192,6 +201,7 @@ export class UserService {
     this.isAdmin = false;
     this.isEmployee = false;
     this.isLoged = false;
+    this.pushService.addTags('user_type','client');
     this.storage.clear();
     this.navController.navigateRoot('/products', { animated: true });
   }
