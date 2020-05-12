@@ -1,8 +1,7 @@
 <app-navbar title="Productos"></app-navbar>
-<ion-toolbar style=" position: -webkit-sticky;top: 0">
-  <ion-searchbar mode="ios" placeholder="Buscar Producto" animated inputmode="search" type="seacth" [value]="term"
-    (ionChange)="onSearchChange($event)" [debounce]="700"></ion-searchbar>
-</ion-toolbar>
+<ion-searchbar placeholder="Buscar Producto" animated inputmode="search" type="seacth" [value]="term"
+  (ionChange)="onSearchChange($event)" [debounce]="700"></ion-searchbar>
+
 <ion-content>
   <!-- Refresh -->
   <ion-refresher slot="fixed" (ionRefresh)="nexts($event,true)" pullFactor="0.8" pullMin="60" pullMax="120">
@@ -21,7 +20,8 @@
   <!-- products -->
   <ion-grid fixed>
     <ion-row *ngIf="term===undefined" calss="ion-justify-content-start">
-      <ion-col  size-lg="3" size-md="4" size-sm="6" size-xs="6" *ngFor="let product of products"  class="ion-align-self-end">
+      <ion-col size-lg="3" size-md="4" size-sm="6" size-xs="6" *ngFor="let product of products"
+        class="ion-align-self-end">
         <app-card-product-available *ngIf="term===undefined" [product]="product"></app-card-product-available>
       </ion-col>
     </ion-row>
@@ -40,7 +40,7 @@
 </ion-content>
 
 <!-- cart -->
-<ion-footer *ngIf="productsOrders.length>0" >
+<ion-footer *ngIf="productsOrders.length>0">
   <ion-toolbar (click)="down=!down" color="tertiary">
     <ion-label>Carrito</ion-label>
     <ion-label><br>{{cartService.price| currency:'EUR'}}</ion-label>

@@ -13,7 +13,6 @@ import { UserGoogle } from '../../../interfaces/interfaces';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-
   @Input() title: string;
 
   constructor(

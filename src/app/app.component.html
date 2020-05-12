@@ -4,15 +4,15 @@
 
     <ion-menu side="start" menuId="menuId" contentId="principal" #IonMenu>
       <ion-header class="ion-no-border" >
-        <ion-toolbar>
+        <ion-toolbar >
           <div *ngIf="userService.isLoged">
-            <ion-item lines="none">
+            <ion-item lines="none" color="secondary">
               <ion-avatar slot="start">
                 <img [src]="userService.user.img" *ngIf="userService.user.img"/>
                 <img src="assets/avatars/av-6.png" *ngIf="!userService.user.img"/>
               </ion-avatar>
               <ion-label>
-                <h3>{{userService.user.name}}</h3>
+                <h3><b>{{userService.user.name}}</b></h3>
                 <p>{{userService.user.mail}}</p>
               </ion-label>
             </ion-item>

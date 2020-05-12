@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef, ApplicationRef } from '@angular/core';
 import { ModalController, IonicModule } from '@ionic/angular';
-import { tempImage } from '../../../interfaces/interfaces';
+import { TempImage } from '../../../interfaces/interfaces';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { ProductsManagementService } from '../../../services/products-management.service';
 import { Product } from '../../../interfaces/ProductInterfaces';
 import { UIService } from '../../../services/ui.service';
 import { identifierModuleUrl } from '@angular/compiler';
+import { TempImagesService } from '../../../temp-images.service';
 
 declare var window: any;
 
@@ -16,23 +17,28 @@ declare var window: any;
 })
 export class NewProductComponent implements OnInit {
 
-  tempImages: tempImage[] = []
+  @ViewChild("card-product", { read: ViewContainerRef,static:false }) container; 
+
   product:Product={
     name:"",
     price:0,
-    imgs:this.tempImages
+    imgs:[]
   }
 
   constructor(private modalController: ModalController,
     private camera: Camera,
     private productsManagementService: ProductsManagementService,
-    private ui:UIService
+    private ui:UIService,
+    private appReference:ApplicationRef,
+    public tempImagesService:TempImagesService
   ) { }
 
   async ngOnInit() {
     await this.productsManagementService.deleteTempFolder()
+    this.tempImagesService.tempImages=[];
   }
 
+  
   dismiss() {
     this.modalController.dismiss({
       'dismissed': true
@@ -41,7 +47,10 @@ export class NewProductComponent implements OnInit {
 
   takePhoto() {
     const options: CameraOptions = {
-      quality: 60,
+      quality: 100,
+      targetWidth: 400,
+      targetHeight: 400,
+      allowEdit:true,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -55,6 +64,9 @@ export class NewProductComponent implements OnInit {
   galery() {
     const options: CameraOptions = {
       quality: 60,
+      targetWidth: 300,
+      targetHeight: 200,
+      allowEdit:true,
       destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
@@ -68,22 +80,23 @@ export class NewProductComponent implements OnInit {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
-
+      // let img = 'data:image/jpeg;base64,' + imageData;
       const img = window.Ionic.WebView.convertFileSrc(imageData);
-
+      
       this.productsManagementService.uploadImage(imageData).then((data: any) => {
         //revisar backend nombreImagen
         console.log(data);
 
         if (data.ImageName) {
-          this.tempImages.push({ img, nameImgServer: data.ImageName })
+          this.tempImagesService.tempImages.push({ img, nameImgServer: data.ImageName })
+          this.appReference.tick()
         }
       });
 
     }, (err) => {
       // Handle error
     });
-    //  let base64Image = 'data:image/jpeg;base64,' + imageData;
+    
   }
 
   createProduct() {
@@ -107,7 +120,8 @@ export class NewProductComponent implements OnInit {
   async deleteTempImage(imageName:string) {
     let isDeleted = await this.productsManagementService.deleteTempFile(imageName);
     if (isDeleted) {
-      this.tempImages = this.tempImages.filter(tmpimg => tmpimg.nameImgServer != imageName);
+      this.tempImagesService.tempImages = this.tempImagesService.tempImages.filter(tmpimg => tmpimg.nameImgServer != imageName);
+      this.appReference.tick()
     }
   }
 
