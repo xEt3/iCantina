@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Product } from '../../../interfaces/ProductInterfaces';
 import { CartService } from '../../../services/cart.service';
 import { AlertController } from '@ionic/angular';
+import { TempImage } from '../../../interfaces/interfaces';
+import { TempImagesService } from '../../../temp-images.service';
 
 @Component({
   selector: 'app-card-product-available',
@@ -16,10 +18,15 @@ export class ProductAvailableComponent implements OnInit {
   }
   @Input() disabled=false;
   @Input() product:Product;
+  @Input() newProduct:boolean=false;
   constructor(private cartService:CartService,
-    private alertCtrl:AlertController) { }
+    private alertCtrl:AlertController,
+    public tempImagesService:TempImagesService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.tempImagesService.tempImages);
+    
+  }
 
   async addProductToCart() {
     const alert = await this.alertCtrl.create({

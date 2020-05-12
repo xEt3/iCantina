@@ -1,31 +1,43 @@
 <ion-card mode='md'>
-  <ion-slides mode="ios" pager="ios" scrollbar="ios" *ngIf="product.imgs.length>1">
+  <ion-slides mode="ios" pager="ios" scrollbar="ios" *ngIf="product.imgs.length>1 && !disabled">
     <ion-slide *ngFor="let img of product.imgs" class="image-slide" [style]="img |image: product.user | domSanitazer">
     </ion-slide>
   </ion-slides>
-  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="product.imgs.length===1">
+  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="product.imgs.length===1&& !disabled">
     <ion-slide class="image-slide" [style]="product.imgs[0] |image: product.user | domSanitazer">
     </ion-slide>
   </ion-slides>
-  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="product.imgs.length===0">
+  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="tempImagesService.tempImages.length===0 && disabled||product.imgs.length===0 && !disabled ">
     <ion-slide class="image-slide" [style]="'assets/sandwitch-default.jpg' | domSanitazer">
     </ion-slide>
+  </ion-slides> 
+  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="disabled && tempImagesService.tempImages.length===1">
+    <ion-slide class="image-slide" [style]="tempImagesService.tempImages[0].img | domSanitazer">
+    </ion-slide>
   </ion-slides>
-  <ion-item lines="none">
-    <ion-text>
-      <p>{{product.name}}</p>
-    </ion-text>
+  <ion-slides mode="ios" pager="ios" scrollbar="ios" *ngIf="disabled && tempImagesService.tempImages.length>1">
+    <ion-slide *ngFor="let img of tempImagesService.tempImages" class="image-slide" [style]="img.img | domSanitazer">
+    </ion-slide>
+  </ion-slides>
+  <ion-item lines="none" class="ion-text-center">
+    <ion-label text-wrap>
+      <p style="text-align: center;">{{product.name}}</p>
+  </ion-label>
   </ion-item>
-  <ion-item lines="none">
-    <ion-chip color="primary" mode="ios">
+  <ion-item lines="none" class="ion-text-center">
+    <ion-label>
+    <ion-chip color="primary" mode="ios" >
       <ion-label>{{product.price | currency:'EUR'}}</ion-label>
     </ion-chip>
+  </ion-label>
   </ion-item>
-  <ion-item class="ion-text-center">
+  <ion-item class="ion-text-center" lines="none">
+    <ion-label>
     <ion-button fill="solid" size="small" shape="round" (click)="addProductToCart()" slot="end" [disabled]="disabled">
       <ion-icon slot="icon-only" name="add"></ion-icon>
       <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
     </ion-button>
+  </ion-label>
   </ion-item>
   <ion-buttons slot="end">
 
