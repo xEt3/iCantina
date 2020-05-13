@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { PipesModule } from '../pipes/pipes.module';
 import { ProductAvailableComponent } from './products-components/card-product-available/card-product-available.component';
-import { ProductOrderComponent } from './cart-components/product-order/product-order.component';
-import { NewProductComponent } from './products-components/new-product/new-product.component';
+import { CardProductCartComponent } from './cart-components/card-product-cart/card-product-cart';
 import { NavbarComponent } from './shared-components/navbar/navbar.component';
 import { ItemProductOrderComponent } from './cart-components/item-product-order/item-product-order.component';
 import { ItemUserComponent } from './users-components/item-user/item-user.component';
@@ -33,7 +32,7 @@ import { EditProductComponent } from './products-components/edit-product/edit-pr
   declarations: [SlideshowProductComponent,
     ProductAvailableComponent,
     SlideshowCartComponent,
-    ProductOrderComponent,
+    CardProductCartComponent,
     NavbarComponent,
     ItemProductOrderComponent,
     CardOrderClientComponent,

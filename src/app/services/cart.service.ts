@@ -7,13 +7,12 @@ import { ProductOrder } from '../../../model/productOrder';
   providedIn: 'root'
 })
 export class CartService {
-  private cartProducts: ProductOrder[] = [];
+  cartProducts: ProductOrder[] = [];
   price:number;
   constructor(private storage: Storage) {
     this.loadStorage();
   }
 
-  cartChange = new EventEmitter();
 
   addProduct(product: Product, amount: number) {
     let productOrder = this.getProductElement(product._id);
@@ -40,7 +39,6 @@ export class CartService {
     if (productElement != undefined) {
       let index = this.cartProducts.indexOf(productElement);
       this.cartProducts.splice(index, 1);
-      this.cartChange.emit();
       this.saveStorage();
       return true;
     } else {
@@ -80,7 +78,6 @@ export class CartService {
   async saveStorage() {
     await this.storage.set('cartProducts', this.cartProducts);
     this.calculatePrice();
-    this.cartChange.emit('change');
   }
 
   async loadStorage() {

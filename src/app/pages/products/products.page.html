@@ -40,20 +40,21 @@
 </ion-content>
 
 <!-- cart -->
-<ion-footer *ngIf="productsOrders.length>0">
+<ion-footer *ngIf="cartService.cartProducts.length>0">
   <ion-toolbar (click)="down=!down" color="tertiary">
     <ion-label>Carrito</ion-label>
     <ion-label><br>{{cartService.price| currency:'EUR'}}</ion-label>
     <ion-icon slot="start" name="cart" class="ion-padding"></ion-icon>
     <ion-buttons slot="end">
       <ion-button>
-        <ion-icon *ngIf="down" slot="icon-only" name="chevron-down"></ion-icon>
-        <ion-icon *ngIf="!down" slot="icon-only" name="chevron-up"></ion-icon>
+        <ion-icon *ngIf="!down" slot="icon-only" name="chevron-down"></ion-icon>
+        <ion-icon *ngIf="down" slot="icon-only" name="chevron-up"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-  <app-slideshow-cart [productsOrder]="productsOrders" *ngIf="down"></app-slideshow-cart>
-  <ion-button (click)="sendOrder()" expand="block" fill="clear" shape="round" *ngIf="down">
+  <app-slideshow-cart [productsOrder]="cartService.cartProducts" *ngIf="!down && cartService.cartProducts.length>0">
+  </app-slideshow-cart>
+  <ion-button (click)="sendOrder()" expand="block" fill="clear" shape="round" *ngIf="!down">
     Enviar pedido
   </ion-button>
 </ion-footer>

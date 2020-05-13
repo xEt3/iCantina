@@ -4,11 +4,11 @@ import { CartService } from '../../../services/cart.service';
 import { Product } from '../../../interfaces/ProductInterfaces';
 
 @Component({
-  selector: 'app-product-order',
-  templateUrl: './product-order.component.html',
-  styleUrls: ['./product-order.component.scss'],
+  selector: 'app-card-product-cart',
+  templateUrl: './card-product-cart.html',
+  styleUrls: ['./card-product-cart.scss'],
 })
-export class ProductOrderComponent implements OnInit {
+export class CardProductCartComponent implements OnInit {
   @Input() productOrder:ProductOrder;
   constructor(private cartService:CartService) { }
 
