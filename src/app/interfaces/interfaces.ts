@@ -3,7 +3,14 @@ export interface Page{
     name:string;
     redirectTo:string;
 }
-export interface tempImage{
+export interface TempImage{
     img:string,
     nameImgServer:string
+}
+
+export interface UserGoogle{
+    mail:string,
+    name:string,
+    uid:string,
+    img:string
 }

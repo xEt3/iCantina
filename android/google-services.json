@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "283447142110",
+    "firebase_url": "https://icantina.firebaseio.com",
+    "project_id": "icantina",
+    "storage_bucket": "icantina.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:283447142110:android:ad7442b8b633cf09f6444f",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "283447142110-u63bi9fk6n8vpssndtbaov52idlhk4st.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvHTk9WmrayLl7747OKrvCv90mL-3C5eU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "283447142110-u63bi9fk6n8vpssndtbaov52idlhk4st.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

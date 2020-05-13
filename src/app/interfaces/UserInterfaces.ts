@@ -4,13 +4,13 @@ export interface MeResponse {
 }
 
 export interface User {
+    img?:       string;
     admin?:    boolean;
     employee?: boolean;
     imgsTemp?: any[];
     _id?:      string;
     name?:     string;
     mail?:     string;
-    password?:string;
     __v?:      number;
 }
 

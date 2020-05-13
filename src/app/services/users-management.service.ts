@@ -31,6 +31,25 @@ export class UsersManagementService {
     })
   }
 
+  deleteUser(idUser:string){
+    return new Promise(async resolve => {
+      const token = await this.userService.getToken();
+      if (token != null) {
+        const headers = new HttpHeaders({
+          'x-token': token
+        })
+        this.http.delete(`${url}/user/deleteUser/${idUser}`, { headers }).subscribe((resp:any) => {
+          if (resp.ok) {
+            this.userChange.emit();
+            return resolve(true);
+          } else {
+            return resolve(false);
+          }
+        })
+      }
+    })
+  }
+
   getUsers(reset = false) {
       if (reset) {
         this.usersPage = 0

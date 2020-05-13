@@ -1,0 +1,5 @@
+<ion-slides [options]="slidesOpt" direction="vertical">
+  <ion-slide *ngFor="let product of products">
+    <app-card-product-available [product]="product"></app-card-product-available>
+  </ion-slide>
+</ion-slides>

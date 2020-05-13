@@ -1,0 +1,57 @@
+<ion-card mode="ios">
+  <ion-card-subtitle class="ion-padding">ID: {{order._id}}</ion-card-subtitle>
+  <ion-chip mode="ios" [color]="status.color">
+    <ion-label>{{status.name}}</ion-label>
+    <ion-icon [name]="status.icon"></ion-icon>
+  </ion-chip>
+  <ion-item lines="none">
+    <ion-label>Cliente: </ion-label>
+  </ion-item>
+  <ion-item>
+    <app-chip-user [user]="order.client"></app-chip-user>
+  </ion-item>
+
+  <ion-list>
+    <app-item-products [products]="order.products"></app-item-products>
+    <div *ngIf="order.ready">
+      <ion-item lines="none">
+        Fecha de preparado: <span class="ion-padding">{{order.readyDate|date:'short'}}</span>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label>Preparado por: </ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <app-chip-user [user]=order.employeeMarkReady color="warning"></app-chip-user>
+      </ion-item>
+
+    </div>
+
+    <div *ngIf="order.done">
+      <app-item-delivery-data [order]="order"></app-item-delivery-data>
+    </div>
+
+    <div *ngIf="!order.done">
+      <ion-item lines="none">
+        <ion-label>Preparado</ion-label>
+        <ion-toggle (click)="changeReady($event)" [(ngModel)]="order.ready" color="warning"></ion-toggle>
+      </ion-item>
+      <ion-item lines="none" class="ion-text-center">
+        <ion-label>
+          <ion-button (click)="deleteOrder()" color="danger" fill="solid">
+            <ion-icon slot="end" name="trash-outline"></ion-icon>
+            <ion-label>Borrar pedido</ion-label>
+          </ion-button>
+          <ion-button (click)="markAsDone()" color="success" fill="solid">
+            <ion-icon slot="end" name="paper-plane-outline"></ion-icon>
+            <ion-label>Entregar pedido</ion-label>
+          </ion-button>
+        </ion-label>
+      </ion-item>
+    </div>
+    <ion-item lines='none' color="primary">
+      <H4 class="ion-padding">Total: {{order.price | currency:'EUR'}}</H4>
+    </ion-item>
+  </ion-list>
+
+
+</ion-card>

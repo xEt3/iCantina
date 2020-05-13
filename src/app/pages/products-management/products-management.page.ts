@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../interfaces/ProductInterfaces';
 import { ProductsManagementService } from '../../services/products-management.service';
 import { ModalController } from '@ionic/angular';
-import { NewProductComponent } from '../../components/new-product/new-product.component';
-import { EditProductComponent } from '../../components/edit-product/edit-product.component';
+import { NewProductComponent } from '../../components/products-components/new-product/new-product.component';
+import { EditProductComponent } from '../../components/products-components/edit-product/edit-product.component';
 
 @Component({
   selector: 'app-products-management',
@@ -15,8 +15,9 @@ export class ProductsManagementPage implements OnInit {
   products: Product[] = []
   infineScrollEnable=true;
 
-  constructor(private productsManagementService: ProductsManagementService,
-    private modalController:ModalController,
+  constructor(
+    private productsManagementService: ProductsManagementService,
+    private modalController:ModalController
     ) { }
 
   async ngOnInit() {
@@ -28,10 +29,6 @@ export class ProductsManagementPage implements OnInit {
 
   refresh(ev){
     this.nexts(ev,true);
-  }
-
-  async deleteProduct(product:Product){
-    await this.productsManagementService.deleteProduct(product._id)
   }
 
   async nexts(ev?,reset:boolean=false){
@@ -51,28 +48,10 @@ export class ProductsManagementPage implements OnInit {
     });
   }
 
-  async changeStatusProduct(product: Product) {
-    let newProduct:Product=await this.productsManagementService.updateProduct(product);
-    console.log(newProduct);
-    const index = this.products.indexOf(product);
-    if(product.available!== newProduct.available)
-    this.products[index]=newProduct;
-  }
-
   async newProduct(){
     const modal = await this.modalController.create({
       component:NewProductComponent
  
-    });
-    modal.present();
-  }
-
-  async editProduct(product:Product){
-    const modal = await this.modalController.create({
-      component:EditProductComponent,
-      componentProps:{
-        product
-      }
     });
     modal.present();
   }

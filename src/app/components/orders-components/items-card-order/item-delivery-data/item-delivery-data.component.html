@@ -1,0 +1,9 @@
+<ion-item lines="none">
+  Fecha de entrega: <span class="ion-padding">{{order.deliverDate|date:'short'}}</span>
+</ion-item>
+<ion-item lines="none">
+  <ion-label>Entregado por: </ion-label>
+</ion-item>
+<ion-item lines="none">
+  <app-chip-user [user]="order.employee" color="success"></app-chip-user>
+</ion-item>

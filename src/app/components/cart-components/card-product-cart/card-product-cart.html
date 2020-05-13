@@ -1,0 +1,28 @@
+<ion-card>
+  <ion-item lines="none">
+    <div style="margin-right: 20px;">
+      <ion-avatar slot="start">
+        <img *ngIf="productOrder.product.imgs.length>0"
+          [src]="productOrder.product.imgs[0]|image : productOrder.product.user" />
+        <img *ngIf="productOrder.product.imgs.length===0" src="assets/sandwitch-default.jpg" />
+      </ion-avatar>
+    </div>
+    <div>
+      <ion-text class="ion-text-center">
+        <h5>{{productOrder.product.name}}</h5>
+        <p> <br> Cantidad : {{productOrder.amount}} <br></p>
+        <p>
+          <ion-chip color="primary" mode="ios">
+            <ion-label>{{productOrder.product.price * productOrder.amount | currency:'EUR'}}</ion-label>
+          </ion-chip>
+        </p>
+      </ion-text>
+    </div>
+    <ion-buttons slot="end">
+      <ion-button (click)="deleteProductToCart(productOrder.product)" >
+        <ion-icon slot="icon-only" name="trash" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-item>
+</ion-card>

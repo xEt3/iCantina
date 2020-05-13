@@ -1,0 +1,60 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+
+  <ion-list>
+    <ion-grid fixed>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="6" size-lg="3" size-md="4" size-sm="6" size-xs="6">
+          <div class="ion-align-items-center">
+            <app-card-product-available [product]="product" [disabled]=true></app-card-product-available>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-list>
+            <ion-item>
+              <ion-label position="floating">Nombre</ion-label>
+              <ion-input name="mail" type="text" [(ngModel)]="product.name"></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating">Precio</ion-label>
+              <ion-input name="nombre" type="number" [(ngModel)]="product.price"></ion-input>
+            </ion-item>
+
+            <ion-item lines="none">
+              <ion-label>Disponible</ion-label>
+              <ion-toggle color="success" mode="ios" [(ngModel)]="product.available"></ion-toggle>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-item lines="none" class="ion-text-center">
+        <ion-label>
+          <ion-button color="success" shape="round" (click)="saveChanges()">
+            <ion-label>Guardar</ion-label>
+            <ion-icon slot="end" name="cloud-upload-outline"></ion-icon>
+          </ion-button>
+      
+          <ion-button type="submit" color="danger" shape="round" (click)="deleteProduct()">
+            <ion-label>Eliminar</ion-label>
+            <ion-icon slot="end" name="trash"></ion-icon>
+          </ion-button>
+        </ion-label>
+      </ion-item>
+
+    </ion-grid>
+
+
+
+  </ion-list>
+</ion-content>

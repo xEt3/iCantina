@@ -12,6 +12,7 @@ const url = environment.url;
 export class ProductService {
 
   private pageProductAvailables = 0;
+  private pageSearchProductAvailables = 0;
 
   constructor(private http: HttpClient) { }
 
@@ -21,5 +22,12 @@ export class ProductService {
     }
     this.pageProductAvailables++;
     return this.http.get<ProductsResponse>(`${url}/product/availables?page=${this.pageProductAvailables}`);
+  }
+  searchProductAvailables(term:string,reset: boolean = false) {
+    if (reset) {
+      this.pageSearchProductAvailables = 0;
+    }
+    this.pageSearchProductAvailables++;
+    return this.http.get<ProductsResponse>(`${url}/product/availables/search/${term}?page=${this.pageSearchProductAvailables}`);
   }
 }

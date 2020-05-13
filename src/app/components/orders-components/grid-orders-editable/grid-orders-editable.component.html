@@ -1,0 +1,8 @@
+<ion-grid fixed>
+  <ion-row>
+    <ion-col size="12" size-md="12" size-lg="6" *ngFor="let order of orders">
+      <app-card-order-editable  [order]="order"></app-card-order-editable>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+</ion-grid>

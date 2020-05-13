@@ -1,5 +1,5 @@
-<app-navbar title="Administrar pedidos"></app-navbar>
-<ion-content>
+<app-navbar  title="Administrar pedidos"></app-navbar>
+<ion-content >
   <ion-refresher slot="fixed" (ionRefresh)="refresh($event)" pullFactor="0.8" pullMin="60" pullMax="120">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -15,14 +15,14 @@
     </ion-segment-button>
   </ion-segment>
 
-<div *ngIf="page==='history' && ordersHistory.length>0">
-  <app-orders-configurable [orders]="ordersHistory"></app-orders-configurable>
+<div *ngIf="page==='history'">
+  <app-grid-orders-editable *ngIf="ordersHistory.length>0" [orders]="ordersHistory"></app-grid-orders-editable>
 </div>
-<div *ngIf="page==='todo'&& ordersToDo.length>0">
-  <app-orders-configurable [orders]="ordersToDo"></app-orders-configurable>
+<div *ngIf="page==='todo'">
+  <app-grid-orders-editable *ngIf="ordersToDo.length>0" [orders]="ordersToDo"></app-grid-orders-editable>
 </div>
-<div *ngIf="page==='ready'&& ordersReady.length>0">
-  <app-orders-configurable [orders]="ordersReady"></app-orders-configurable>
+<div *ngIf="page==='ready'">
+  <app-grid-orders-editable *ngIf=" ordersReady.length>0" [orders]="ordersReady"></app-grid-orders-editable>
 </div>
 
   <!-- InfiniteScroll -->

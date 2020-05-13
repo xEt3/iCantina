@@ -4,7 +4,7 @@ import { Product } from '../../interfaces/ProductInterfaces';
 import { ProductOrder } from '../../../../model/productOrder';
 import { CartService } from '../../services/cart.service';
 import { ModalController } from '@ionic/angular';
-import { SendOrderComponent } from '../../components/send-order/send-order.component';
+import { SendOrderComponent } from '../../components/orders-components/send-order/send-order.component';
 
 @Component({
   selector: 'app-products',
@@ -12,48 +12,83 @@ import { SendOrderComponent } from '../../components/send-order/send-order.compo
   styleUrls: ['./products.page.scss'],
 })
 export class ProductsPage implements OnInit {
-
+  loading=false;
+  term:string=undefined ;
   down = false;
   products: Product[] = [];
-  productsOrders: ProductOrder[] = [];
-  infineScrollEnable=true;
+  productsFound: Product[] = [];
+  infineScrollEnable = true;
 
   constructor(
     private productService: ProductService,
     public cartService: CartService,
-    private modalController:ModalController
+    private modalController: ModalController
   ) { }
 
   async ngOnInit() {
-    this.nexts(null,true);
-    this.productsOrders = await this.cartService.getAllProductOrders();
-    this.cartService.cartChange.subscribe(async () => {
-        this.productsOrders = await this.cartService.getAllProductOrders();
-    })
+    this.nexts(null, true);
   }
 
-  nexts(ev?,reset:boolean=false){
+  nexts(ev?, reset: boolean = false) {
+    if (reset) {
+      this.infineScrollEnable = true;
+    }
+    if (this.term===undefined  )
+      this.getProductsAvailables(reset,ev);
+    else {
+      this.searchProductsAvailables(reset,ev);
+    }
+  }
+
+  private getProductsAvailables(reset=false,ev){
     if(reset){
-      this.products=[];
-      this.infineScrollEnable=true;
+      this.loading=true;
+      this.products = [];
     }
     this.productService.getProductAvailables(reset).subscribe(data => {
       this.products.push(...data.products);
-      if(data.products.length===0){
-        this.infineScrollEnable=false;
+      this.loading=false;
+      if (data.products.length === 0) {
+        this.infineScrollEnable = false;
       }
-      if(ev){
+      if (ev) {
         ev.target.complete();
       }
-      
     })
+  }
+
+  private searchProductsAvailables(reset=false,ev){
+    if(reset){
+      this.productsFound=[];
+      this.loading=true
+    }
+    this.productService.searchProductAvailables(this.term,reset).subscribe(data=>{
+      this.productsFound.push(...data.products);
+      this.loading=false;
+      if (data.products.length === 0) {
+        this.infineScrollEnable = false;
+      }
+      if (ev) {
+        ev.target.complete();
+      }
+    })
+  }
+
+  onSearchChange(ev){
+    const term=ev.detail.value;
+    if(term!==""){
+      this.term=term;
+      this.nexts(null,true)
+    }else{
+      this.term=undefined;
+    }
   }
 
   async sendOrder() {
     const modal = await this.modalController.create({
-      component:SendOrderComponent,
-      componentProps:{
-        productsOrder:this.productsOrders
+      component: SendOrderComponent,
+      componentProps: {
+        productsOrder: this.productsOrders
       }
     });
     modal.present();
