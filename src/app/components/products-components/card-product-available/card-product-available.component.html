@@ -7,10 +7,11 @@
     <ion-slide class="image-slide" [style]="product.imgs[0] |image: product.user | domSanitazer">
     </ion-slide>
   </ion-slides>
-  <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="tempImagesService.tempImages.length===0 && newProduct||product.imgs.length===0 && !newProduct ">
+  <ion-slides mode="ios" [options]="slideSoloOpt"
+    *ngIf="tempImagesService.tempImages.length===0 && newProduct||product.imgs.length===0 && !newProduct ">
     <ion-slide class="image-slide" [style]="'assets/sandwitch-default.jpg' | domSanitazer">
     </ion-slide>
-  </ion-slides> 
+  </ion-slides>
   <ion-slides mode="ios" [options]="slideSoloOpt" *ngIf="newProduct && tempImagesService.tempImages.length===1">
     <ion-slide class="image-slide" [style]="tempImagesService.tempImages[0].img | domSanitazer">
     </ion-slide>
@@ -22,25 +23,21 @@
   <ion-item lines="none" class="ion-text-center">
     <ion-label text-wrap>
       <p style="text-align: center;">{{product.name}}</p>
-  </ion-label>
+    </ion-label>
   </ion-item>
   <ion-item lines="none" class="ion-text-center">
     <ion-label>
-    <ion-chip color="primary" mode="ios" >
-      <ion-label>{{product.price | currency:'EUR'}}</ion-label>
-    </ion-chip>
-  </ion-label>
+      <ion-chip color="primary" mode="ios">
+        <ion-label>{{product.price | currency:'EUR'}}</ion-label>
+      </ion-chip>
+    </ion-label>
   </ion-item>
   <ion-item class="ion-text-center" lines="none">
     <ion-label>
-    <ion-button fill="solid" size="small" shape="round" (click)="addProductToCart()" slot="end" [disabled]="disabled">
-      <ion-icon slot="icon-only" name="add"></ion-icon>
-      <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
-    </ion-button>
-  </ion-label>
+      <ion-button fill="solid" size="small" shape="round" (click)="addProductToCart()" slot="end" [disabled]="disabled">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+        <ion-icon slot="icon-only" name="cart-outline"></ion-icon>
+      </ion-button>
+    </ion-label>
   </ion-item>
-  <ion-buttons slot="end">
-
-  </ion-buttons>
-
 </ion-card>

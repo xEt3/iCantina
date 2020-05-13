@@ -23,35 +23,38 @@
       <ion-content>
         <ion-list>
           <ion-menu-toggle autoHide=false>
-            <ion-item routerLink="/products" routerDirecction="root" [class.active-item]="selectedPath==='/products'">
+            <ion-item routerLink="/products" routerDirecction="root" [class.active-item]="selectedPath==='/products'"
+            (click)="selectedPath='/products'">
               <ion-icon slot="start" name="fast-food"></ion-icon>
               <ion-label>Productos</ion-label>
             </ion-item>
             <ion-item routerLink="/products-management" routerDirecction="root"
-              [class.active-item]="selectedPath==='/products-management'" *ngIf="userService.isEmployee">
+              [class.active-item]="selectedPath==='/products-management'" *ngIf="userService.isEmployee"
+              (click)="selectedPath='/products-management'">
               <ion-icon slot="start" name="construct"></ion-icon>
               <ion-label>Configurar Productos</ion-label>
             </ion-item>
             <ion-item routerLink="/my-orders" routerDirecction="root" [class.active-item]="selectedPath==='/my-orders'"
-              *ngIf="userService.isLoged">
+              *ngIf="userService.isLoged"
+              (click)="selectedPath='/my-orders'">
               <ion-icon slot="start" name="receipt"></ion-icon>
               <ion-label>Mis pedidos</ion-label>
             </ion-item>
 
             <ion-item routerLink="/user-management" routerDirecction="root"
-              [class.active-item]="selectedPath==='/user-management'" *ngIf="userService.isAdmin">
+              [class.active-item]="selectedPath==='/user-management'" *ngIf="userService.isAdmin"
+              (click)="selectedPath='/user-management'">
               <ion-icon slot="start" name="people"></ion-icon>
               <ion-label>Configurar usuarios</ion-label>
             </ion-item>
 
             <ion-item routerLink="/order-management" routerDirecction="root"
-              [class.active-item]="selectedPath==='/order-management'" *ngIf="userService.isEmployee">
+              [class.active-item]="selectedPath==='/order-management'" *ngIf="userService.isEmployee"
+              (click)="selectedPath='/order-management'">
               <ion-icon slot="start" name="documents"></ion-icon>
               <ion-label>Administrar pedidos</ion-label>
             </ion-item>
-
           </ion-menu-toggle>
-
         </ion-list>
       </ion-content>
       <ion-footer class="ion-no-border">
