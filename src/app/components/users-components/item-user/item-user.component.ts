@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../../../interfaces/UserInterfaces';
 import { UsersManagementService } from '../../../services/users-management.service';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular';
 import { PopoverChangeRangeComponent } from '../popover-change-range/popover-change-range.component';
+import { UserViewComponent } from '../user-view/user-view.component';
 
 @Component({
   selector: 'app-item-user',
@@ -15,26 +16,21 @@ export class ItemUserComponent implements OnInit {
   range:string;
 
   constructor(
-    private usersManagementService: UsersManagementService,
-    private popoverController: PopoverController,
+    private modalController:ModalController
   ) { }
 
   ngOnInit() {
 
   }
 
-  async changeRange(ev) {
-    const popover = await this.popoverController.create({
-      component: PopoverChangeRangeComponent,
-      event: ev,
-      mode: 'ios',
-      backdropDismiss: true,
-      componentProps:{
-        user:this.user
+  async showUser() {
+    const modal = await this.modalController.create({
+      component: UserViewComponent,
+      componentProps: {
+        user: this.user
       }
-
     });
-    await popover.present();
+    modal.present();
   }
 
 }

@@ -21,6 +21,7 @@ export class CartService {
     } else {
       productOrder.amount += amount;
     }
+    this.calculatePrice()
     this.saveStorage();
   }
 
@@ -40,6 +41,7 @@ export class CartService {
       let index = this.cartProducts.indexOf(productElement);
       this.cartProducts.splice(index, 1);
       this.saveStorage();
+      this.calculatePrice();
       return true;
     } else {
       return false;
@@ -52,6 +54,7 @@ export class CartService {
       let index = this.cartProducts.indexOf(productElement);
       productElement.amount = amount;
       this.saveStorage();
+      this.calculatePrice()
       return true;
     } else {
       return false;

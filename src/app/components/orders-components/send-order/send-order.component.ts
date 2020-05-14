@@ -14,23 +14,14 @@ import { OrderToSend, ProductElement } from '../../../interfaces/OrderInterface'
 })
 export class SendOrderComponent implements OnInit {
 
-  productsOrder: ProductOrder[] = [];
-
   constructor(
     private modalController: ModalController,
-    private cartService: CartService,
+    public cartService: CartService,
     private ui: UIService,
     private ordersService: OrdersService
   ) { }
 
   async ngOnInit() {
-    this.productsOrder = await this.cartService.getAllProductOrders();
-    this.cartService.cartChange.subscribe(async () => {
-      this.productsOrder = await this.cartService.getAllProductOrders();
-      if (this.productsOrder.length === 0) {
-        this.dismiss();
-      }
-    })
   }
 
   dismiss() {
@@ -63,7 +54,7 @@ export class SendOrderComponent implements OnInit {
 
   private getProductsElements():ProductElement[]{
     const productsElement: ProductElement[] = [];
-    this.productsOrder.forEach(productOrder => {
+    this.cartService.cartProducts.forEach(productOrder => {
       const product = productOrder.product._id;
       const amount = productOrder.amount;
       productsElement.push({ product, amount })

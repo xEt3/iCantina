@@ -9,7 +9,7 @@
 </ion-header>
 <ion-content>
   <ion-list>
-    <div *ngFor="let productOrder of productsOrder">
+    <div *ngFor="let productOrder of cartService.cartProducts">
       <app-item-product-order [productOrder]="productOrder"></app-item-product-order>
     </div>
   </ion-list>
@@ -19,3 +19,8 @@
   </ion-fab-button>
 </ion-fab>
 </ion-content>
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-title>Total: {{cartService.price| currency:'EUR'}}</ion-title>
+  </ion-toolbar>
+</ion-footer>
