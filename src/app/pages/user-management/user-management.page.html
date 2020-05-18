@@ -1,13 +1,34 @@
 <app-navbar title="Configurar usuarios"></app-navbar>
-<ion-content >
+<ion-searchbar placeholder="Buscar Usuario" animated inputmode="search" type="seacth" [value]="term"
+  (ionChange)="onSearchChange($event)" [debounce]="700"></ion-searchbar>
+
+<ion-content>
+  <!-- Refresh -->
   <ion-refresher slot="fixed" (ionRefresh)="nexts($event,true)" pullFactor="0.8" pullMin="60" pullMax="120">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-list>
+
+  <!-- Loading animation -->
+  <ion-grid *ngIf="loading">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-spinner name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Users -->
+  <ion-list *ngIf="term===undefined">
     <div *ngFor="let user of users">
       <app-item-user [user]="user"></app-item-user>
     </div>
   </ion-list>
+  <ion-list *ngIf="term!==undefined">
+    <div *ngFor="let user of usersFound">
+      <app-item-user [user]="user"></app-item-user>
+    </div>
+  </ion-list>
+
   <ion-infinite-scroll [disabled]="!infineScrollEnable" threshold="25%" position="bottom" (ionInfinite)="nexts($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando productos...">
     </ion-infinite-scroll-content>
