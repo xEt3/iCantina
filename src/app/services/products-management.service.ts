@@ -13,6 +13,7 @@ const url = environment.url;
 export class ProductsManagementService {
 
   private pageProducts = 0;
+  private pageSearchProducts = 0;
 
   changeProduct = new EventEmitter();
 
@@ -153,4 +154,11 @@ export class ProductsManagementService {
     })
   }
 
+  searchProducts(term:string,reset: boolean = false) {
+    if (reset) {
+      this.pageSearchProducts = 0;
+    }
+    this.pageSearchProducts++;
+    return this.http.get<ProductsResponse>(`${url}/product/search/${term}?page=${this.pageSearchProducts}`);
+  }
 }

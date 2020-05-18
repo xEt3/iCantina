@@ -13,45 +13,86 @@ import { EditProductComponent } from '../../components/products-components/edit-
 export class ProductsManagementPage implements OnInit {
 
   products: Product[] = []
-  infineScrollEnable=true;
+  productsFound: Product[] = []
+  infineScrollEnable = true;
+  loading = false;
+  term: string = undefined;
 
   constructor(
     private productsManagementService: ProductsManagementService,
-    private modalController:ModalController
-    ) { }
+    private modalController: ModalController
+  ) { }
 
   async ngOnInit() {
-    await this.nexts(null,true);
-    this.productsManagementService.changeProduct.subscribe(data=>{
-      this.nexts(null,true);
+    await this.nexts(null, true);
+    this.productsManagementService.changeProduct.subscribe(data => {
+      this.nexts(null, true);
     })
   }
 
-  refresh(ev){
-    this.nexts(ev,true);
+  refresh(ev) {
+    this.nexts(ev, true);
   }
 
-  async nexts(ev?,reset:boolean=false){
-    if(reset){
-      this.products=[];
-      this.infineScrollEnable=true;
+  async nexts(ev?, reset: boolean = false) {
+    if (reset) {
+      this.infineScrollEnable = true;
+    }
+    if (this.term===undefined  )
+      this.getProducts(reset,ev);
+    else {
+      this.searchProductsAvailables(reset,ev);
+    }
+  }
+
+  private async getProducts(reset = false, ev) {
+    if (reset) {
+      this.loading = true;
+      this.products = [];
     }
     const query = await this.productsManagementService.getProducts(reset);
     query.subscribe(data => {
       this.products.push(...data.products);
-      if(data.products.length===0){
-        this.infineScrollEnable=false;
+      this.loading=false;
+      if (data.products.length === 0) {
+        this.infineScrollEnable = false;
       }
-      if(ev){
+      if (ev) {
         ev.target.complete();
       }
     });
   }
 
-  async newProduct(){
+  private searchProductsAvailables(reset=false,ev){
+    if(reset){
+      this.productsFound=[];
+      this.loading=true
+    }
+    this.productsManagementService.searchProducts(this.term,reset).subscribe(data=>{
+      this.productsFound.push(...data.products);
+      this.loading=false;
+      if (data.products.length === 0) {
+        this.infineScrollEnable = false;
+      }
+      if (ev) {
+        ev.target.complete();
+      }
+    })
+  }
+
+  onSearchChange(ev){
+    const term=ev.detail.value;
+    if(term!==""){
+      this.term=term;
+      this.nexts(null,true)
+    }else{
+      this.term=undefined;
+    }
+  }
+  async newProduct() {
     const modal = await this.modalController.create({
-      component:NewProductComponent
- 
+      component: NewProductComponent
+
     });
     modal.present();
   }
