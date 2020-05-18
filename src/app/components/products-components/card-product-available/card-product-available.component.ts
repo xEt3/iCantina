@@ -4,6 +4,8 @@ import { CartService } from '../../../services/cart.service';
 import { AlertController } from '@ionic/angular';
 import { TempImage } from '../../../interfaces/interfaces';
 import { TempImagesService } from '../../../temp-images.service';
+import { AppModule } from '../../../app.module';
+import { UIService } from '../../../services/ui.service';
 
 @Component({
   selector: 'app-card-product-available',
@@ -21,7 +23,8 @@ export class ProductAvailableComponent implements OnInit {
   @Input() newProduct:boolean=false;
   constructor(private cartService:CartService,
     private alertCtrl:AlertController,
-    public tempImagesService:TempImagesService) { }
+    public tempImagesService:TempImagesService,
+    private uiService:UIService) { }
 
   ngOnInit() {
     console.log(this.tempImagesService.tempImages);
@@ -49,8 +52,10 @@ export class ProductAvailableComponent implements OnInit {
         {
           text: 'Add to cart',
           handler: (data) => {
-            if (data.quantity != "" && Number(data.amount) >= 1) {
+            if (data.quantity != "" && Number(data.amount) >= 1 && Number(data.amount)<100) {
               this.cartService.addProduct(this.product, Number(data.amount));
+            }else{
+              this.uiService.presentToast('Cantidad invalida','danger');
             }
           }
         }
