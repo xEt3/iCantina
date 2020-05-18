@@ -86,10 +86,7 @@ export class ProductsPage implements OnInit {
 
   async sendOrder() {
     const modal = await this.modalController.create({
-      component: SendOrderComponent,
-      componentProps: {
-        productsOrder: this.productsOrders
-      }
+      component: SendOrderComponent
     });
     modal.present();
   }

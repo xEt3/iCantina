@@ -1,4 +1,4 @@
-<ion-item>
+<ion-item (click)="showUser()">
   <div *ngIf="!user.img">
   <ion-avatar slot="start"  *ngIf="!user.employee&&!user.admin">
     <img src="assets/avatars/av-1.png">
@@ -30,9 +30,4 @@
         </ion-chip>
     </ion-text>
   </div>
-  <ion-buttons slot="end" *ngIf="user.mail!=='admin'">
-    <ion-button (click)="changeRange($event)">
-      <ion-icon slot="icon-only" name="settings"></ion-icon>
-    </ion-button>
-  </ion-buttons>
 </ion-item>

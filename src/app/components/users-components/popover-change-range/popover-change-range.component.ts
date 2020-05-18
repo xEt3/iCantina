@@ -33,7 +33,9 @@ export class PopoverChangeRangeComponent implements OnInit {
     this.usersManagementService.convertUserToAdmin(this.user._id).then(reslve => {
       if (resolve) {
         this.range = 'admin';
-        this.popoverController.dismiss()
+        this.dismiss()
+        this.user.employee=true;
+        this.user.admin=true;
       }
     })
   }
@@ -41,7 +43,9 @@ export class PopoverChangeRangeComponent implements OnInit {
     this.usersManagementService.convertUserToEmployee(this.user._id).then(reslve => {
       if (resolve) {
         this.range = 'employee';
-        this.popoverController.dismiss()
+        this.user.employee=true;
+        this.user.admin=false;
+        this.dismiss()
       }
     })
   }
@@ -49,8 +53,10 @@ export class PopoverChangeRangeComponent implements OnInit {
   makeClient() {
     this.usersManagementService.convertUserToClient(this.user._id).then(reslve => {
       if (resolve) {
-        this.range = 'employee';
-        this.popoverController.dismiss()
+        this.range = 'client';
+        this.user.employee=false;
+        this.user.admin=false;
+        this.dismiss()
       }
     })
 
@@ -74,12 +80,16 @@ export class PopoverChangeRangeComponent implements OnInit {
         this.makeClient();
         break;
     }
+  }
 
-
+  dismiss(){
+    this.popoverController.dismiss({
+      user: this.user
+    })
   }
 
   close() {
-    this.popoverController.dismiss()
+    this.dismiss();
   }
 
 }

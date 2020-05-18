@@ -1,0 +1,53 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">
+        <ion-icon slot="icon-only" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-avatar class="user-avatar-image">
+    <img [src]="user.img" *ngIf="user.img" />
+    <img src="assets/avatars/av-1.png" *ngIf="!user.img" />
+  </ion-avatar>
+
+  <ion-item lines="none" class="ion-text-center">
+    <ion-label text-wrap>
+      <b>{{user.name}}</b>
+    </ion-label>
+  </ion-item>
+  <ion-item class="ion-text-center" lines="none" >
+    <ion-label text-wrap><a href="mailto:{{user.mail}}">{{user.mail}}</a></ion-label>
+  </ion-item>
+  <ion-item class="ion-text-center" lines="none">
+    <ion-label>
+      <ion-chip (click)="changeRange($event)" [color]="range.color" mode="ios" outline="true"
+        *ngIf="userService.isAdmin">
+        <ion-label>{{range.name}}</ion-label>
+        <ion-icon name="pencil-outline"></ion-icon>
+      </ion-chip>
+      <ion-chip [color]="range.color" mode="ios" outline="true" *ngIf="!userService.isAdmin">
+        <ion-label>{{range.name}}</ion-label>
+      </ion-chip>
+    </ion-label>
+  </ion-item>
+  <ion-item *ngIf="!user.admin">
+    <ion-label class="ion-text-center">
+      <ion-button (click)="deleteUser()" color="danger"  shape="round">
+        <ion-label>Eliminar usuario</ion-label>
+        <ion-icon slot="end" name="skull"></ion-icon>
+      </ion-button>
+    </ion-label>
+  </ion-item>
+
+  <app-grid-orders-editable [orders]="ordersUser" *ngIf="ordersUser.length>0"></app-grid-orders-editable>
+  <!-- InfiniteScroll -->
+  <ion-infinite-scroll *ngIf="ordersUser.length>1" [disabled]="!infineScrollEnable" threshold="25%" position="bottom"
+    (ionInfinite)="nexts($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando productos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

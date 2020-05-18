@@ -24,11 +24,12 @@ import { GridOrdersEditableComponent } from './orders-components/grid-orders-edi
 import { CardOrderEditableComponent } from './orders-components/card-order-editable/card-order-editable.component';
 import { ItemProductEditableComponent } from './products-components/item-product-editable/item-product-editable.component';
 import { EditProductComponent } from './products-components/edit-product/edit-product.component';
+import { UserViewComponent } from './users-components/user-view/user-view.component';
 
 
 
 @NgModule({
-  entryComponents:[PopoverChangeRangeComponent,EditProductComponent],
+  entryComponents:[PopoverChangeRangeComponent,EditProductComponent,UserViewComponent],
   declarations: [SlideshowProductComponent,
     ProductAvailableComponent,
     SlideshowCartComponent,
@@ -44,7 +45,8 @@ import { EditProductComponent } from './products-components/edit-product/edit-pr
     ItemDeliveryDataComponent,
     ChipUserComponent,
     ItemProductEditableComponent,
-    EditProductComponent
+    EditProductComponent,
+    UserViewComponent
   ],
   imports: [
     CommonModule,

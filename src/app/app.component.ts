@@ -30,21 +30,23 @@ export class AppComponent {
     this.initializeApp();
     if (!this.platform.is('cordova') && !this.platform.is('capacitor')) {
       this.router.events.subscribe((event: RouterEvent) => {
-        switch (event.url) {
-          case '/products-management':
-            this.selectedPath = event.url
-            break;
-          case '/my-orders':
-            this.selectedPath = event.url
-            break
-          case "/user-management":
-            this.selectedPath = event.url
-            break
-          case "/order-management":
-            this.selectedPath = event.url
-            break
-          default:
-            this.selectedPath = "/products"
+        if (event.url) {
+          switch (event.url) {
+            case '/products-management':
+              this.selectedPath = event.url
+              break;
+            case '/my-orders':
+              this.selectedPath = event.url
+              break
+            case "/user-management":
+              this.selectedPath = event.url
+              break
+            case "/order-management":
+              this.selectedPath = event.url
+              break
+            default:
+              this.selectedPath = "/products"
+          }
         }
       })
     }
