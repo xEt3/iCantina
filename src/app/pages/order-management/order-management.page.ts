@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdersManagementService } from '../../services/orders-management.service';
 import { Order } from '../../interfaces/OrderInterface';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-order-management',
@@ -8,7 +9,7 @@ import { Order } from '../../interfaces/OrderInterface';
   styleUrls: ['./order-management.page.scss'],
 })
 export class OrderManagementPage implements OnInit {
-
+  loading=false;
   page = 'todo';
   ordersHistory: Order[] = [];
   ordersReady: Order[] = [];
@@ -65,7 +66,9 @@ export class OrderManagementPage implements OnInit {
   }
   
   async refresh(ev) {
+    this.loading=true;
     await this.getOrdersHistory(ev, true);
     await this.getOrdersToDo(ev);
+    this.loading=false;
   }
 }

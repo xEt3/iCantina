@@ -9,6 +9,7 @@ import { OrdersService } from '../../services/orders.service';
 })
 export class MyOrdersPage implements OnInit {
 
+  loading=false;
   isFinished: boolean = true;
   constructor(private ordersService: OrdersService) { }
 
@@ -20,6 +21,7 @@ export class MyOrdersPage implements OnInit {
   }
 
   async nexts(ev?, reset: boolean = false) {
+    this.loading=true;
     if (reset) {
       this.ordersFinished = [];
       this.ordersUnfinished = [];
@@ -30,6 +32,7 @@ export class MyOrdersPage implements OnInit {
       if (ev) {
         ev.target.complete();
       }
+      this.loading=false;
     })
   }
 
