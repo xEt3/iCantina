@@ -1,5 +1,5 @@
 <ion-item-sliding>
-  <ion-item >
+  <ion-item (click)="editProduct(product)" >
     <ion-avatar>
       <img [src]="product.imgs[0] | image:product.user" *ngIf="product.imgs.length>0">
       <img src="assets/sandwitch-default.jpg" *ngIf="product.imgs.length===0">
@@ -14,9 +14,6 @@
   </ion-item>
 
   <ion-item-options >
-    <ion-item-option color="light" (click)="editProduct(product)">
-      <ion-icon slot="icon-only" color="tertiary"  name="create"></ion-icon>
-    </ion-item-option>
     <ion-item-option color="light" (click)="deleteProduct(product)">
       <ion-icon slot="icon-only"  color="danger" name="trash"></ion-icon>
     </ion-item-option>
