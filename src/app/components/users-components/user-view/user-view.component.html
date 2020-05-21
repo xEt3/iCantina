@@ -42,7 +42,14 @@
     </ion-label>
   </ion-item>
 
-  <app-grid-orders-editable [orders]="ordersUser" *ngIf="ordersUser.length>0"></app-grid-orders-editable>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" *ngFor="let order of ordersUser">
+        <app-card-order-editable  [order]="order"></app-card-order-editable>
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
   <!-- InfiniteScroll -->
   <ion-infinite-scroll *ngIf="ordersUser.length>1" [disabled]="!infineScrollEnable" threshold="25%" position="bottom"
     (ionInfinite)="nexts($event)">
