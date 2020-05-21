@@ -17,7 +17,8 @@
               </ion-label>
             </ion-item>
           </div>
-          <ion-title *ngIf="!userService.isLoged">iCantina</ion-title>
+          <ion-title *ngIf="!userService.isLoged">
+            iCantina</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content>
@@ -59,6 +60,9 @@
       </ion-content>
       <ion-footer class="ion-no-border">
         <ion-toolbar>
+          <ion-avatar  style="padding: 10px;">
+            <img src="assets/icon/favicon.png" />
+          </ion-avatar>
           <ion-buttons slot="end">
             <ion-button  (click)="login()" *ngIf="!userService.isLoged">
               <ion-icon slot="end" name="log-in"></ion-icon>
