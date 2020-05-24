@@ -1,8 +1,8 @@
 {
   "name": "iCantina",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Ignacio Belmonte",
+  "homepage": "https://github.com/xEt3",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
