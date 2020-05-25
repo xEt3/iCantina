@@ -1,16 +1,18 @@
 <ion-chip [color]="color" mode="ios" *ngIf="userService.isEmployee" (click)="showUser()" >
   <ion-avatar>
-    <img src="assets/avatars/av-6.png" *ngIf="!user.img" />
-    <img [src]="user.img" *ngIf="user.img" />
+    <img src="assets/avatars/av-6.png" *ngIf="!user" />
+    <img [src]="user.img" *ngIf="user" />
   </ion-avatar>
-  <ion-label *ngIf="!text">{{user.name}}</ion-label>
-  <ion-label *ngIf="text">{{text}}</ion-label>
+  <ion-label *ngIf="!text && user">{{user.name}}</ion-label>
+  <ion-label *ngIf="text && user">{{text}}</ion-label>
+  <ion-label *ngIf="!user">No disponbible</ion-label>
 </ion-chip>
 <ion-chip [color]="color" mode="ios" *ngIf="!userService.isEmployee" >
   <ion-avatar>
-    <img src="assets/avatars/av-6.png" *ngIf="!user.img" />
-    <img [src]="user.img" *ngIf="user.img" />
+    <img src="assets/avatars/av-6.png" *ngIf="!user" />
+    <img [src]="user.img" *ngIf="user" />
   </ion-avatar>
-  <ion-label *ngIf="!text">{{user.name}}</ion-label>
-  <ion-label *ngIf="text">{{text}}</ion-label>
+  <ion-label *ngIf="!text && user">{{user.name}}</ion-label>
+  <ion-label *ngIf="text && user">{{text}}</ion-label>
+  <ion-label *ngIf="!user">No disponbible</ion-label>
 </ion-chip>
