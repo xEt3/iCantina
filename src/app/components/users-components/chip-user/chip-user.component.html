@@ -1,4 +1,4 @@
-<ion-chip [color]="color" mode="ios" *ngIf="userService.isEmployee" (click)="showUser()" >
+<ion-chip [color]="color" mode="ios" *ngIf="userService.isEmployee && user" (click)="showUser()" >
   <ion-avatar>
     <img src="assets/avatars/av-6.png" *ngIf="!user" />
     <img [src]="user.img" *ngIf="user" />
@@ -7,7 +7,7 @@
   <ion-label *ngIf="text && user">{{text}}</ion-label>
   <ion-label *ngIf="!user">No disponbible</ion-label>
 </ion-chip>
-<ion-chip [color]="color" mode="ios" *ngIf="!userService.isEmployee" >
+<ion-chip [color]="color" mode="ios" *ngIf="!userService.isEmployee || !user" >
   <ion-avatar>
     <img src="assets/avatars/av-6.png" *ngIf="!user" />
     <img [src]="user.img" *ngIf="user" />
