@@ -15,12 +15,14 @@
   </ion-grid>
 
   <!-- segment button -->
-  <ion-segment (ionChange)="changePage($event)" value="todo">
-    <ion-segment-button value="todo">
+  <ion-segment (ionChange)="changePage($event)" value="todo" mode="ios">
+    <ion-segment-button value="todo" >
       <ion-label>Por hacer</ion-label>
+      <ion-badge color="danger">{{ordersToDo.length}}</ion-badge>
     </ion-segment-button>
     <ion-segment-button value="ready">
-      <ion-label>Preparados</ion-label>
+        <ion-label>Preparados</ion-label>
+        <ion-badge color="warning">{{ordersReady.length}}</ion-badge>
     </ion-segment-button>
     <ion-segment-button value="history">
       <ion-label>Historial</ion-label>
