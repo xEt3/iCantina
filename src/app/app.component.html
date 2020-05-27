@@ -43,10 +43,10 @@
             </ion-item>
 
             <ion-item routerLink="/user-management" routerDirecction="root"
-              [class.active-item]="selectedPath==='/user-management'" *ngIf="userService.isAdmin"
+              [class.active-item]="selectedPath==='/user-management'" *ngIf="userService.isEmployee"
               (click)="selectedPath='/user-management'">
               <ion-icon slot="start" name="people"></ion-icon>
-              <ion-label>Configurar usuarios</ion-label>
+              <ion-label>Usuarios</ion-label>
             </ion-item>
 
             <ion-item routerLink="/order-management" routerDirecction="root"
