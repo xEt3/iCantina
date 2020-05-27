@@ -33,7 +33,7 @@
       </ion-chip>
     </ion-label>
   </ion-item>
-  <ion-item *ngIf="!user.admin">
+  <ion-item *ngIf="!user.admin && userService.isAdmin">
     <ion-label class="ion-text-center">
       <ion-button (click)="deleteUser()" color="danger"  shape="round">
         <ion-label>Eliminar usuario</ion-label>
