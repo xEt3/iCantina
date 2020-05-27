@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<?xml version='1.1' encoding='utf-8'?>
+<widget id="es.ignaciobelmonte" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>iCantina</name>
     <description>Aplicacion para gestionar pedidos de comida en una cantina</description>
     <author email="belmonteperona@gmail.com" href="https://github.com/xEt3">Ignacio Belmonte</author>

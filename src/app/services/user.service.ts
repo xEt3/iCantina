@@ -57,7 +57,7 @@ export class UserService {
       'webClientId': '283447142110-u63bi9fk6n8vpssndtbaov52idlhk4st.apps.googleusercontent.com',
       'offline': true
     });
-    console.log(res)
+    console.log( res)
     if (res.userId) {
       const userGoogle: UserGoogle =
       {
