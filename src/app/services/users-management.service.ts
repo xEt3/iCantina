@@ -12,6 +12,7 @@ const url = environment.url;
 })
 export class UsersManagementService {
   private usersPage: number = 0;
+  private pageSearchUsers:number = 0;
 
   userChange = new EventEmitter();
 
@@ -29,6 +30,14 @@ export class UsersManagementService {
         }
       })
     })
+  }
+    
+  searchUsers(term:string,reset: boolean = false) {
+    if (reset) {
+      this.pageSearchUsers = 0;
+    }
+    this.pageSearchUsers++;
+    return this.http.get<UsersResponse>(`${url}/user/search/${term}?page=${this.pageSearchUsers}`);
   }
 
   deleteUser(idUser:string){

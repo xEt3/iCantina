@@ -1,4 +1,6 @@
 <app-navbar title="Configuracion de Productos"></app-navbar>
+<ion-searchbar placeholder="Buscar Producto" animated inputmode="search" type="seacth" [value]="term"
+  (ionChange)="onSearchChange($event)" [debounce]="700"></ion-searchbar>
 
 <ion-content>
 
@@ -7,17 +9,30 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list>
+  <!-- Loading animation -->
+  <ion-grid *ngIf="loading">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-spinner name="crescent"></ion-spinner>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Products -->
+  <ion-list *ngIf="term===undefined">
     <app-item-product-editable *ngFor="let product of products" [product]="product"></app-item-product-editable>
   </ion-list>
-  
-<ion-fab vertical="bottom" horizontal="center" slot="fixed">
-  <ion-fab-button (click)="newProduct()">
-    <ion-icon name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
-<ion-infinite-scroll [disabled]="!infineScrollEnable" threshold="25%" position="bottom" (ionInfinite)="nexts($event)">
-  <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando productos...">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+  <ion-list *ngIf="term!==undefined">
+    <app-item-product-editable *ngFor="let product of productsFound" [product]="product"></app-item-product-editable>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="newProduct()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-infinite-scroll [disabled]="!infineScrollEnable" threshold="25%" position="bottom" (ionInfinite)="nexts($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Cargando productos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

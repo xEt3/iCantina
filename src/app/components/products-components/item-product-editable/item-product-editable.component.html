@@ -1,24 +1,22 @@
 <ion-item-sliding>
-  <ion-item >
-    <ion-avatar>
+  <ion-item>
+    <ion-avatar (click)="editProduct(product)">
       <img [src]="product.imgs[0] | image:product.user" *ngIf="product.imgs.length>0">
       <img src="assets/sandwitch-default.jpg" *ngIf="product.imgs.length===0">
     </ion-avatar>
-    <ion-text class="ion-padding">
+    <ion-text class="ion-padding" (click)="editProduct(product)">
       <h5>{{product.name}}</h5>
       <p>Precio: {{product.price| currency:'EUR'}}</p>
     </ion-text>
     <ion-buttons slot="end">
-      <ion-toggle color="success" mode="ios" (click)="changeStatusProduct(product)" [(ngModel)]="product.available"></ion-toggle>
+      <ion-toggle color="success" mode="ios" (click)="changeStatusProduct(product)" [(ngModel)]="product.available">
+      </ion-toggle>
     </ion-buttons>
   </ion-item>
 
-  <ion-item-options >
-    <ion-item-option color="light" (click)="editProduct(product)">
-      <ion-icon slot="icon-only" color="tertiary"  name="create"></ion-icon>
-    </ion-item-option>
+  <ion-item-options>
     <ion-item-option color="light" (click)="deleteProduct(product)">
-      <ion-icon slot="icon-only"  color="danger" name="trash"></ion-icon>
+      <ion-icon slot="icon-only" color="danger" name="trash"></ion-icon>
     </ion-item-option>
   </ion-item-options>
 

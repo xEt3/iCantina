@@ -23,6 +23,7 @@ export class ProductService {
     this.pageProductAvailables++;
     return this.http.get<ProductsResponse>(`${url}/product/availables?page=${this.pageProductAvailables}`);
   }
+  
   searchProductAvailables(term:string,reset: boolean = false) {
     if (reset) {
       this.pageSearchProductAvailables = 0;
