@@ -3,13 +3,13 @@
   <ion-split-pane contentId="principal" when="md">
 
     <ion-menu side="start" menuId="menuId" contentId="principal" #IonMenu>
-      <ion-header class="ion-no-border" >
-        <ion-toolbar >
+      <ion-header class="ion-no-border">
+        <ion-toolbar>
           <div *ngIf="userService.isLoged">
             <ion-item lines="none" color="light">
               <ion-avatar slot="start">
-                <img [src]="userService.user.img" *ngIf="userService.user.img"/>
-                <img src="assets/avatars/av-6.png" *ngIf="!userService.user.img"/>
+                <img [src]="userService.user.img" *ngIf="userService.user.img" />
+                <img src="assets/avatars/av-6.png" *ngIf="!userService.user.img" />
               </ion-avatar>
               <ion-label>
                 <h3><b>{{userService.user.name}}</b></h3>
@@ -25,7 +25,7 @@
         <ion-list>
           <ion-menu-toggle autoHide=false>
             <ion-item routerLink="/products" routerDirecction="root" [class.active-item]="selectedPath==='/products'"
-            (click)="selectedPath='/products'">
+              (click)="selectedPath='/products'">
               <ion-icon slot="start" name="fast-food"></ion-icon>
               <ion-label>Productos</ion-label>
             </ion-item>
@@ -36,8 +36,7 @@
               <ion-label>Configurar Productos</ion-label>
             </ion-item>
             <ion-item routerLink="/my-orders" routerDirecction="root" [class.active-item]="selectedPath==='/my-orders'"
-              *ngIf="userService.isLoged"
-              (click)="selectedPath='/my-orders'">
+              *ngIf="userService.isLoged" (click)="selectedPath='/my-orders'">
               <ion-icon slot="start" name="receipt"></ion-icon>
               <ion-label>Mis pedidos</ion-label>
             </ion-item>
@@ -60,15 +59,14 @@
       </ion-content>
       <ion-footer class="ion-no-border">
         <ion-toolbar>
-          <ion-avatar  style="padding: 10px;">
-            <img src="assets/icon/favicon.png" />
-          </ion-avatar>
+          
+          <img src="/assets/Transparente.png" width="80" style="margin-bottom: 6px; margin-left: 0px;"/>
           <ion-buttons slot="end">
-            <ion-button  (click)="login()" *ngIf="!userService.isLoged">
+            <ion-button (click)="login()" *ngIf="!userService.isLoged">
               <ion-icon slot="end" name="log-in"></ion-icon>
               Ingresar
             </ion-button>
-            <ion-button  (click)="logout()" *ngIf="userService.isLoged" color="danger">
+            <ion-button (click)="logout()" *ngIf="userService.isLoged" color="danger">
               <ion-icon slot="end" name="log-out"></ion-icon>
               Cerrar sesión
             </ion-button>
