@@ -1,13 +1,13 @@
 <app-navbar title="Mis pedidos"></app-navbar>
+<ion-segment (ionChange)="isFinished=!isFinished" value="finished">
+  <ion-segment-button value="finished">
+    <ion-label>Entregados</ion-label>
+  </ion-segment-button>
+  <ion-segment-button value="unfinished">
+    <ion-label>Pendientes</ion-label>
+  </ion-segment-button>
+</ion-segment>
 <ion-content>
-  <ion-segment (ionChange)="isFinished=!isFinished" value="finished">
-    <ion-segment-button value="finished">
-      <ion-label>Entregados</ion-label>
-    </ion-segment-button>
-    <ion-segment-button value="unfinished">
-      <ion-label>Pendientes</ion-label>
-    </ion-segment-button>
-  </ion-segment>
 
   <!-- Refresh -->
   <ion-refresher slot="fixed" (ionRefresh)="nexts($event,true)" pullFactor="0.8" pullMin="60" pullMax="120">
