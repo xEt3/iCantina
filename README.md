@@ -14,3 +14,9 @@ https://play.google.com/store/apps/details?id=es.ignaciobelmonte
 https://icantina.web.app/
 
 ## Screenshots
+
+![alt text](app%20images/screenshots%20collage.jpg)
+
+## Scheme
+
+![alt text](app%20images/configuracion%20app.png)
